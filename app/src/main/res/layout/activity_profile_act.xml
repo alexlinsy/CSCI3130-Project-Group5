@@ -21,13 +21,40 @@
         <TextView
             android:id="@+id/textViewUserEmail"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="TextView" />
+            android:layout_height="47dp"
+            android:text="Personal information"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Name:" />
+
+        <EditText
+            android:id="@+id/editTextFaculty"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Faculty:" />
+
+        <Button
+            android:id="@+id/buttonAddInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload information" />
 
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="wrap_content"
             android:text="Logout" />
+
     </LinearLayout>
 </RelativeLayout>

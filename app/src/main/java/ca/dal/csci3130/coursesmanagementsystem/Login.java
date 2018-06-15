@@ -18,9 +18,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
-    private EditText editTextemail;
-    private EditText editTextPassowrd;
-    private TextView textViewSign;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private TextView textViewSignup;
     private Button buttonLogin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -36,18 +36,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
          // startActivities(new Intent(getApplicationContext(),Profile_act.class));
          startActivity(new Intent(getApplicationContext(), Profile_act.class));
      }
-     editTextemail= (EditText) findViewById(R.id.editTextEmail);
-     editTextPassowrd= (EditText) findViewById(R.id.editTextPassword);
-     textViewSign = (TextView) findViewById(R.id.textViewSignin);
-     buttonLogin = (Button) findViewById(R.id.buttonRegister);
-        progressDialog = new ProgressDialog(this);
+        editTextEmail= (EditText) findViewById(R.id.editTextEmail);
+        editTextPassword= (EditText) findViewById(R.id.editTextPassword);
+     buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        textViewSignup = (TextView) findViewById(R.id.textViewSignup);
+     progressDialog = new ProgressDialog(this);
+
      buttonLogin.setOnClickListener(this);
-     textViewSign.setOnClickListener(this);
+        textViewSignup.setOnClickListener(this);
     }
 
     private void loginUser(){
-        String email = editTextemail.getText().toString().trim();
-        String password = editTextPassowrd.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
         if(TextUtils.isEmpty( email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
             return;
@@ -60,7 +61,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         //if the email and password are entered
         //showing the dialog
-        progressDialog.setMessage("Registering User...");
+        progressDialog.setMessage("Login...");
         progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -82,7 +83,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginUser();
 
     }
-    if(v == textViewSign){
+    if(v == textViewSignup){
         finish();
         startActivity(new Intent(this, MainActivity.class));
     }

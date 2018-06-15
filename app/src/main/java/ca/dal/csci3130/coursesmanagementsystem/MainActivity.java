@@ -1,6 +1,7 @@
 package ca.dal.csci3130.coursesmanagementsystem;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.icu.util.Freezable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     progressDialog = new ProgressDialog(this);
     firebaseAuth = FirebaseAuth.getInstance();
 
+        if(firebaseAuth.getCurrentUser() !=null){
+            //execute profile
+            finish();
+            // startActivities(new Intent(getApplicationContext(),Profile_act.class));
+            startActivity(new Intent(getApplicationContext(), Profile_act.class));
+        }
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
     editTextemail = (EditText)findViewById(R.id.editTextEmail);
@@ -64,8 +71,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             //user is successfully reg and logged in
-                            Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                            progressDialog.cancel();
+                            //Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                            //progressDialog.cancel();
+                            //execute profile
+                                finish();
+                                // startActivities(new Intent(getApplicationContext(),Profile_act.class));
+                                startActivity(new Intent(getApplicationContext(), Profile_act.class));
+
                         }else{
                             Toast.makeText(MainActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
@@ -78,6 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      if(view == buttonRegister) {
          registerUser();
      }
+    if(view ==textViewSignin){
+         startActivity(new Intent(this, Login.class));
+    }
+
+
      }
     }
 

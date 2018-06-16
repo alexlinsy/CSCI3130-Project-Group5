@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail;
@@ -24,26 +27,23 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button buttonLogin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
      firebaseAuth=FirebaseAuth.getInstance();
 
-     if(firebaseAuth.getCurrentUser() !=null){
-         //execute profile
-         finish();
-         // startActivities(new Intent(getApplicationContext(),Profile_act.class));
-         startActivity(new Intent(getApplicationContext(), Profile_act.class));
-     }
-        editTextEmail= (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword= (EditText) findViewById(R.id.editTextPassword);
+     editTextEmail= (EditText) findViewById(R.id.editTextEmail);
+     editTextPassword= (EditText) findViewById(R.id.editTextPassword);
      buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        textViewSignup = (TextView) findViewById(R.id.textViewSignup);
+     textViewSignup = (TextView) findViewById(R.id.textViewSignup);
      progressDialog = new ProgressDialog(this);
 
      buttonLogin.setOnClickListener(this);
-        textViewSignup.setOnClickListener(this);
+     textViewSignup.setOnClickListener(this);
+     databaseReference = FirebaseDatabase.getInstance().getReference("User");
+        FirebaseUser user = firebaseAuth.getCurrentUser();
     }
 
     private void loginUser(){
@@ -70,14 +70,35 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         progressDialog.dismiss();
                         if(task.isSuccessful( )) {
                             //start the profile act
-                            finish();
+
                            // startActivities(new Intent(getApplicationContext(),Profile_act.class));
-                            startActivity(new Intent(getApplicationContext(), Profile_act.class));
+                            createUserStructure();
+
+                             Toast.makeText(Login.this, "Login Successfully\n Now you can edit your information", Toast.LENGTH_SHORT).show();
+                            progressDialog.cancel();
+                            //finish();
+
+                           // startActivity(new Intent(getApplicationContext(), Profile_act.class));
                             }
                     }
                 });
     }
-    @Override
+
+    private void createUserStructure(){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String name = "Your Name:";
+        String faculty ="Your Faculty";
+        String id = user.getUid();
+        String mailAddress = user.getEmail();
+        String course = "Your Course";
+        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
+        databaseReference.child(id).setValue(userInformation);
+    }
+
+
+
+
+
     public void onClick(View v) {
     if(v ==buttonLogin ){
         loginUser();

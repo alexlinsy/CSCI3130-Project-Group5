@@ -5,14 +5,17 @@ public class UserInformation {
     public String Name;
     public String Faculty;
     public String MailAddress;
+    public String Course;
     public UserInformation(){
 
     }
-    public UserInformation(String Id,String Name,String Faculty,String MailAddress){
+    public UserInformation(String Id,String Name,String Faculty,String MailAddress,String Course){
         this.Id = Id;
         this.Name=Name;
         this.Faculty=Faculty;
         this.MailAddress = MailAddress;
+        this.Course = Course;
+
     }
    /* public String getId(){
         return Id;

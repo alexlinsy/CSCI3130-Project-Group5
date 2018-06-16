@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     progressDialog = new ProgressDialog(this);
     firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser() !=null){
+        /*if(firebaseAuth.getCurrentUser() !=null){
             //execute profile
             finish();
             // startActivities(new Intent(getApplicationContext(),Profile_act.class));
             startActivity(new Intent(getApplicationContext(), Profile_act.class));
-        }
+        }*/
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
     editTextEmail = (EditText)findViewById(R.id.editTextEmail);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //execute profile
                                 finish();
                                 // startActivities(new Intent(getApplicationContext(),Profile_act.class));
-                                startActivity(new Intent(getApplicationContext(), Profile_act.class));
+                                startActivity(new Intent(getApplicationContext(), Login.class));
 
                         }else{
                             Toast.makeText(MainActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();

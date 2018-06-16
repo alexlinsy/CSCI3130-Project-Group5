@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +20,10 @@ public class Profile_act extends AppCompatActivity implements View.OnClickListen
     private TextView textViewUserEmail;
     private Button buttonLogout;
     private DatabaseReference databaseReference;
+    private Spinner spinnerFaculty;
 
     private EditText editTextName;
-    private EditText editTextFaculty;
+
     private Button buttonAddInformation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +35,11 @@ public class Profile_act extends AppCompatActivity implements View.OnClickListen
             finish();
             startActivity(new Intent(this, Login.class));
         }
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference("User");
         editTextName = (EditText)findViewById(R.id.editTextName);
-        editTextFaculty = (EditText)findViewById(R.id.editTextFaculty);
-        buttonAddInformation = (Button)findViewById(R.id.buttonAddInformation);
 
+        buttonAddInformation = (Button)findViewById(R.id.buttonAddInformation);
+        spinnerFaculty = (Spinner)findViewById(R.id.spinnerFaculty);
         FirebaseUser user = firebaseAuth.getCurrentUser();
         textViewUserEmail= (TextView) findViewById(R.id.textViewUserEmail);
 
@@ -48,11 +50,15 @@ public class Profile_act extends AppCompatActivity implements View.OnClickListen
 
     }
     private void uploadUserInformaiton(){
-        String name = editTextName.getText().toString().trim();
-        String faculty = editTextFaculty.getText().toString().trim();
-        UserInformation userInformation = new UserInformation(name,faculty);
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference.child(user.getUid()).setValue(userInformation);
+        String name = editTextName.getText().toString().trim();
+        String faculty = spinnerFaculty.getSelectedItem().toString();
+        String id = user.getUid();
+        String mailAddress = user.getEmail();
+        int count =1;
+        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress);
+
+        databaseReference.child(id).setValue(userInformation);
         Toast.makeText(this, "Uploading", Toast.LENGTH_SHORT).show();
     }
     @Override

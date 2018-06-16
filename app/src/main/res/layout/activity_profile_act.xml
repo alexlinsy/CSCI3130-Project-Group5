@@ -36,13 +36,11 @@
             android:inputType="textPersonName"
             android:hint="Name:" />
 
-        <EditText
-            android:id="@+id/editTextFaculty"
-            android:layout_width="205dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Faculty:" />
+        <Spinner
+            android:id="@+id/spinnerFaculty"
+            android:layout_width="206dp"
+            android:layout_height="37dp"
+            android:entries="@array/Faculty" />
 
         <Button
             android:id="@+id/buttonAddInformation"

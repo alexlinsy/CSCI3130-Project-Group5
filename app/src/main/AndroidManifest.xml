@@ -17,7 +17,26 @@
             </intent-filter>
         </activity>
         <activity android:name=".ComputerScience"></activity>
+        <activity android:name=".Art"></activity>
+        <activity android:name=".commerce"></activity>
+        <activity android:name=".science"></activity>
         <activity android:name=".CS1000"></activity>
+        <activity android:name=".CS2000"></activity>
+        <activity android:name=".CS3000"></activity>
+        <activity android:name=".CS4000"></activity>
+        <activity android:name=".A1000"></activity>
+        <activity android:name=".A2000"></activity>
+        <activity android:name=".A3000"></activity>
+        <activity android:name=".A4000"></activity>
+        <activity android:name=".COM1000"></activity>
+        <activity android:name=".COM2000"></activity>
+        <activity android:name=".COM3000"></activity>
+        <activity android:name=".COM4000"></activity>
+        <activity android:name=".S1000"></activity>
+        <activity android:name=".S2000"></activity>
+        <activity android:name=".S3000"></activity>
+        <activity android:name=".S4000"></activity>
+
 
     </application>
 

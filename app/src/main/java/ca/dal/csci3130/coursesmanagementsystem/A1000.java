@@ -14,10 +14,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+
 import static android.content.ContentValues.TAG;
 
 
-public class CS1000 extends ComputerScience{
+    public class A1000 extends Art {
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class CS1000 extends ComputerScience{
             setContentView(R.layout.cs1xxx);
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("faculty").child("computerScience").child("year1");
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("faculty").child("arts").child("year1");
             // Read from the database
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -35,7 +36,7 @@ public class CS1000 extends ComputerScience{
                         String item = ds.getKey();
                         arrayList.add(item);
                     }
-                    ListAdapter arrayAdapter = new ArrayAdapter<String>(CS1000.this, android.R.layout.simple_list_item_1, arrayList);
+                    ListAdapter arrayAdapter = new ArrayAdapter<String>(ca.dal.csci3130.coursesmanagementsystem.A1000.this, android.R.layout.simple_list_item_1, arrayList);
                     ListView lv=(ListView)findViewById(R.id.lv);
                     lv.setAdapter(arrayAdapter);
                 }
@@ -46,4 +47,5 @@ public class CS1000 extends ComputerScience{
                 }
             });
         }
-}
+    }
+

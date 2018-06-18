@@ -12,11 +12,23 @@ public class  MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void onButtonClick(View v){
-        if(v.getId() == R.id.BComputerScience){
+    public void onButtonClick(View v) {
+        if (v.getId() == R.id.BComputerScience) {
             Intent i = new Intent(MainActivity.this, ComputerScience.class);
             startActivity(i);
         }
+        if (v.getId() == R.id.BArts) {
+            Intent i = new Intent(MainActivity.this, Art.class);
+            startActivity(i);
+        }
+        if (v.getId() == R.id.BCommerce) {
+            Intent i = new Intent(MainActivity.this, commerce.class);
+            startActivity(i);
 
+        }
+        if (v.getId() == R.id.BScience) {
+            Intent i = new Intent(MainActivity.this, science.class);
+            startActivity(i);
+        }
     }
 }

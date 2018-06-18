@@ -14,25 +14,30 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+
 import static android.content.ContentValues.TAG;
-public class CS3000 extends ComputerScience {
+
+
+public class S2000 extends science {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cs1xxx);
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("faculty").child("computerScience").child("year3");
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("faculty").child("science").child("year2");
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList = new ArrayList<String>();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String item = ds.getKey();
                     arrayList.add(item);
                 }
-                ListAdapter arrayAdapter = new ArrayAdapter<String>(CS3000.this, android.R.layout.simple_list_item_1, arrayList);
-                ListView lv = (ListView) findViewById(R.id.lv);
+                ListAdapter arrayAdapter = new ArrayAdapter<String>(ca.dal.csci3130.coursesmanagementsystem.S2000.this, android.R.layout.simple_list_item_1, arrayList);
+                ListView lv=(ListView)findViewById(R.id.lv);
                 lv.setAdapter(arrayAdapter);
             }
 
@@ -40,9 +45,7 @@ public class CS3000 extends ComputerScience {
             public void onCancelled(DatabaseError databaseError) {
                 Log.w(TAG, "Failed to read value.", databaseError.toException());
             }
-
         });
-
     }
-
 }
+

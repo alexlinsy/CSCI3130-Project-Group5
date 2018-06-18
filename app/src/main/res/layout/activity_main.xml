@@ -6,13 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativelayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backgroundImageView"
+            android:layout_width="700dp"
+            android:layout_height="326dp"
+            android:contentDescription="@string/todo"
+            app:srcCompat="@drawable/register_background"
+            tools:layout_editor_absoluteX="71dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/courseDisplay"
+            android:layout_width="219dp"
+            android:layout_height="37dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="43dp"
+            android:gravity="center"
+            android:text="@string/course_number"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/professorAvatar"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="92dp"
+            android:contentDescription="@string/todo"
+            app:srcCompat="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/professorName"
+            android:layout_width="179dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="232dp"
+            android:gravity="center"
+            android:text="@string/professor_name"
+            android:textColor="@android:color/white" />
+
+
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/register_button"
+            android:clickable="true"
+            android:contextClickable="true" />
+
+        <Button
+            android:id="@+id/dropButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/drop_button"
+            android:clickable="true"
+            android:contextClickable="true" />
+
+        <ScrollView
+            android:id="@+id/courseScrollView"
+            android:layout_width="375dp"
+            android:layout_height="146dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="124dp"
+            android:layout_marginTop="340dp">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/courseIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/course_intro" />
+            </TableLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

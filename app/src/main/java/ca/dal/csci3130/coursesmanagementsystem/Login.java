@@ -77,6 +77,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                            // startActivity(new Intent(getApplicationContext(), Profile_act.class));
                             }
+                        else{
+                            Toast.makeText(Login.this,"Login Failed\nPassword or Account Name is incrrect",Toast.LENGTH_SHORT).show();
+                        }
+
+
+
                     }
                 });
     }

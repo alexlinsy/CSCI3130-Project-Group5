@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button buttonLogin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +42,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
      buttonLogin.setOnClickListener(this);
      textViewSignup.setOnClickListener(this);
-     databaseReference = FirebaseDatabase.getInstance().getReference("User");
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+     FirebaseUser user = firebaseAuth.getCurrentUser();
     }
 
     private void loginUser(){
@@ -72,9 +71,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             //start the profile act
 
                            // startActivities(new Intent(getApplicationContext(),Profile_act.class));
-                            createUserStructure();
-
-                             Toast.makeText(Login.this, "Login Successfully\n Now you can edit your information", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Login Successfully\n Now you can edit your information", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
                             //finish();
 
@@ -83,20 +80,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
     }
-
-    private void createUserStructure(){
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        String name = "Your Name:";
-        String faculty ="Your Faculty";
-        String id = user.getUid();
-        String mailAddress = user.getEmail();
-        String course = "Your Course";
-        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
-        databaseReference.child(id).setValue(userInformation);
-    }
-
-
-
 
 
     public void onClick(View v) {

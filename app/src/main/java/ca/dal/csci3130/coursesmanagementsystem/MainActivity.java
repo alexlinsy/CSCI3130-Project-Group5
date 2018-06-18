@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,19 +38,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     progressDialog = new ProgressDialog(this);
     firebaseAuth = FirebaseAuth.getInstance();
 
+
         /*if(firebaseAuth.getCurrentUser() !=null){
             //execute profile
             finish();
             // startActivities(new Intent(getApplicationContext(),Profile_act.class));
             startActivity(new Intent(getApplicationContext(), Profile_act.class));
         }*/
-
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
     editTextEmail = (EditText)findViewById(R.id.editTextEmail);
     editTextPassword=(EditText)findViewById(R.id.editTextPassword);
     textViewSignin = (TextView)findViewById(R.id.textViewSignin);
     buttonRegister.setOnClickListener(this);
     textViewSignin.setOnClickListener(this);
+
+    databaseReference = FirebaseDatabase.getInstance().getReference("User");
+    FirebaseUser user = firebaseAuth.getCurrentUser();
     }
 
     private void registerUser(){
@@ -74,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                            // Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                             //progressDialog.cancel();
                             //execute profile
-                                finish();
-                                // startActivities(new Intent(getApplicationContext(),Profile_act.class));
-                                startActivity(new Intent(getApplicationContext(), Login.class));
-
+                            //startActivity(new Intent(getApplicationContext(), Login.class));
+                            createUserStructure();
+                            Toast.makeText(MainActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
+                            progressDialog.cancel();
                         }else{
                             Toast.makeText(MainActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
@@ -85,7 +92,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
     }
+
+    private void createUserStructure(){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String name = "Your Name:";
+        String faculty ="Your Faculty";
+        String id = user.getUid();
+        String mailAddress = user.getEmail();
+        String course = "Your Course";
+        UserInformation userInformation = new UserInformation(id,name,faculty,mailAddress,course);
+        databaseReference.child(id).setValue(userInformation);
+    }
     @Override
+
     public void onClick(View view) {
      if(view == buttonRegister) {
          registerUser();

@@ -12,6 +12,24 @@ public class courseInfo {
     public courseInfo() {
 
     }
+
+    public void setCourseIntro(String courseIntro){
+        this.courseIntro = courseIntro;
+    }
+
+    public void setCourseName(String courseName){
+        this.courseName = courseName;
+    }
+
+    public void setCourseLocation(String courseLocation){
+        this.location= courseLocation;
+    }
+    public void setProfessor(String professor){
+        this.professor = professor;
+    }
+    public void setTime(String time){
+        this.time = time;
+    }
     public String getCourseIntro() {
         return courseIntro;
     }

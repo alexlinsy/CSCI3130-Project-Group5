@@ -22,12 +22,18 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private String userCoursesName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("faculty").child("computerScience").child("year2").child("CSCI2110");
+        final DatabaseReference userRef = database.getReference("User").child("FIshkceAxKURrck2MP029a8cqPi2");
+        final Button registerButton = (Button)findViewById(R.id.registerButton);
+        final Button dropButton = (Button)findViewById(R.id.dropButton);
+
+        dropButton.setVisibility(View.GONE);
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 coursesIntro.setText(courseIntroduction);
                 TextView courseName = (TextView)findViewById(R.id.courseDisplay);
                 courseName.setText(courseInfomation.getCourseName());
+                userCoursesName = courseInfomation.getCourseName();
 
                 TextView courseProfessor = (TextView)findViewById(R.id.professorName);
                 courseProfessor.setText(courseInfomation.getProfessor());
@@ -57,19 +64,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button registerButton = (Button)findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new Button.OnClickListener() {
             public  void onClick(View v) {
                 buttonEffect(registerButton);
                 //Change to the user page.
+                userCourses user = new userCourses();
+                user.setUserCourseName(userCoursesName);
+                String courseId = userRef.push().getKey();
+                userRef.child("Courses").child(courseId).setValue(user);
                 startActivity(new Intent(MainActivity.this, UserActivity.class));
+                dropButton.setVisibility(View.VISIBLE);
             }
         });
 
-        final Button dropButton = (Button)findViewById(R.id.dropButton);
         dropButton.setOnClickListener(new Button.OnClickListener() {
             public  void onClick(View v) {
                 buttonEffect(dropButton);
+                userRef.child("Courses").removeValue();
             }
         });
 

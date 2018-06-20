@@ -19,21 +19,35 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private String userCoursesName;
+    public static Button dropButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("faculty").child("computerScience").child("year2").child("CSCI2110");
         final DatabaseReference userRef = database.getReference("User").child("FIshkceAxKURrck2MP029a8cqPi2");
-        final Button registerButton = (Button)findViewById(R.id.registerButton);
-        final Button dropButton = (Button)findViewById(R.id.dropButton);
 
-        dropButton.setVisibility(View.GONE);
+        final Button registerButton = (Button)findViewById(R.id.registerButton);
+        dropButton = (Button)findViewById(R.id.dropButton);
+
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(EXTRA_MESSAGE);
+        if (message == null) {
+            dropButton.setVisibility(View.GONE);
+        }else if(message.equals("showButton")) {
+            dropButton.setVisibility(View.VISIBLE);
+        } else {
+            dropButton.setVisibility(View.GONE);
+        }
+
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -73,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 String courseId = userRef.push().getKey();
                 userRef.child("Courses").child(courseId).setValue(user);
                 startActivity(new Intent(MainActivity.this, UserActivity.class));
-                dropButton.setVisibility(View.VISIBLE);
+               // dropButton.setVisibility(View.VISIBLE);
             }
         });
 

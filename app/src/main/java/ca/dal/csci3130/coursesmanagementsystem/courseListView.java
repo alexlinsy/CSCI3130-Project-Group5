@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 
-public class  MainActivity extends AppCompatActivity {
+public class courseListView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,20 +14,20 @@ public class  MainActivity extends AppCompatActivity {
     }
     public void onButtonClick(View v) {
         if (v.getId() == R.id.BComputerScience) {
-            Intent i = new Intent(MainActivity.this, ComputerScience.class);
+            Intent i = new Intent(courseListView.this, ComputerScience.class);
             startActivity(i);
         }
         if (v.getId() == R.id.BArts) {
-            Intent i = new Intent(MainActivity.this, Art.class);
+            Intent i = new Intent(courseListView.this, Art.class);
             startActivity(i);
         }
         if (v.getId() == R.id.BCommerce) {
-            Intent i = new Intent(MainActivity.this, commerce.class);
+            Intent i = new Intent(courseListView.this, commerce.class);
             startActivity(i);
 
         }
         if (v.getId() == R.id.BScience) {
-            Intent i = new Intent(MainActivity.this, science.class);
+            Intent i = new Intent(courseListView.this, science.class);
             startActivity(i);
         }
     }

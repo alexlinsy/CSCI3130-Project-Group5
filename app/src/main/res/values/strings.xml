@@ -1,5 +1,26 @@
 <resources>
     <string name="app_name">Courses Management System</string>
-    <string name="textview">TextView</string>
+
     <string name="seats">Seats</string>
+    <string-array name="spinner1">
+        <item>Year 1</item>
+        <item>Year 2</item>
+        <item>Year 3</item>
+        <item>Year 4</item>
+    </string-array>
+
+    <string-array name="spinner2">
+        <item>arts</item>
+        <item>commerce</item>
+        <item>computer Science</item>
+        <item>Science</item>
+    </string-array>
+
+    <string-array name="spinner3">
+        <item>CSCI 2100</item>
+        <item>CSCI 2110</item>
+        <item>CSCI 2121</item>
+        <item>CSCI 2132</item>
+    </string-array>
+    <string name ="textview">textView</string>
 </resources>

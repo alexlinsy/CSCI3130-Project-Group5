@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Courses Management System</string>
+<<<<<<< HEAD
+    <string name="course_number">Course Number</string>
+    <string name="professor_name">Professor Name</string>
+    <string name="textview">TextView</string>
+    <string name="todo">TODO</string>
+    <string name="course_intro">Course Intro</string>
+    <string name="myCourses">My Courses</string>
+=======
 
 
 
+>>>>>>> master
 </resources>

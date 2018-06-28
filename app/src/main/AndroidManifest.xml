@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.dal.csci3130.coursesmanagementsystem">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Login" />
         <activity android:name=".ComputerScience"></activity>
         <activity android:name=".Art"></activity>
         <activity android:name=".commerce"></activity>
@@ -36,8 +39,6 @@
         <activity android:name=".S2000"></activity>
         <activity android:name=".S3000"></activity>
         <activity android:name=".S4000"></activity>
-
-
     </application>
 
 </manifest>

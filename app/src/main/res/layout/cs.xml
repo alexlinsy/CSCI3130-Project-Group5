@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dal"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <Button
+        android:id="@+id/B1000"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="52dp"
+        android:layout_weight="1"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="1000+"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/B2000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/B2000"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginStart="71dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="2000+"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/B3000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/B1000" />
+
+    <Button
+        android:id="@+id/B3000"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginStart="71dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="3000+"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/B4000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/B2000" />
+
+    <Button
+        android:id="@+id/B4000"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="62dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginStart="71dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="4000+"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/B3000" />
+
+</android.support.constraint.ConstraintLayout>

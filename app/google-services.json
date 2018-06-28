@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "195965175692-223a8ji2r5b4r6fbjjnqc5bvtaiqoalk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ca.dal.csci3130.coursesmanagementsystem",
-            "certificate_hash": "316638d453a3dab20e4bc7f105ae4230d5ad976e"
-          }
-        },
-        {
           "client_id": "195965175692-dcrvpiuphu8jhth0bjm2qmh5eud6glq8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

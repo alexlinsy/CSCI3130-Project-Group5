@@ -56,7 +56,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(UserActivity.this, MainActivity.class);
+                Intent intent = new Intent(UserActivity.this, CourseRegisterActivity.class);
                 String message = "showButton";
                 intent.putExtra(EXTRA_MESSAGE, message);
                 startActivity(intent);

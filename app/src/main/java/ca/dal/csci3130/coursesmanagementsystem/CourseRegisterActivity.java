@@ -21,9 +21,9 @@ import com.squareup.picasso.Picasso;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
-public class MainActivity extends AppCompatActivity {
+public class CourseRegisterActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "CourseRegisterActivity";
     private String userCoursesName;
     public static Button dropButton;
     @Override
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 user.setUserCourseName(userCoursesName);
                 String courseId = userRef.push().getKey();
                 userRef.child("Courses").child(courseId).setValue(user);
-                startActivity(new Intent(MainActivity.this, UserActivity.class));
+                startActivity(new Intent(CourseRegisterActivity.this, UserActivity.class));
                // dropButton.setVisibility(View.VISIBLE);
             }
         });

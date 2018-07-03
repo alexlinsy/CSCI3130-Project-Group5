@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".courseListView"
-    android:background="@drawable/dal"
-    tools:layout_editor_absoluteY="81dp">
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -55,4 +53,6 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
 </android.support.constraint.ConstraintLayout>

@@ -19,7 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+/**
+ * Class that allow users to login their account
+ */
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -27,24 +29,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button buttonLogin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-
+    /**
+     *
+     * @param savedInstanceState Define the input fields
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
      firebaseAuth=FirebaseAuth.getInstance();
-
      editTextEmail= (EditText) findViewById(R.id.editTextEmail);
      editTextPassword= (EditText) findViewById(R.id.editTextPassword);
      buttonLogin = (Button) findViewById(R.id.buttonLogin);
      textViewSignup = (TextView) findViewById(R.id.textViewSignup);
      progressDialog = new ProgressDialog(this);
-
      buttonLogin.setOnClickListener(this);
      textViewSignup.setOnClickListener(this);
      FirebaseUser user = firebaseAuth.getCurrentUser();
     }
-
+    /**
+     * The method that let user to login their account.
+     */
     private void loginUser(){
          String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -80,14 +85,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         else{
                             Toast.makeText(Login.this,"Login Failed\nPassword or Account Name is incrrect",Toast.LENGTH_SHORT).show();
                         }
-
-
-
-                    }
+                        }
                 });
     }
-
-
+    /**
+     *Execute the login method
+     * @param v Once users click login button, then they can login their own account
+     *          if view equals signup, then interface will return to the register page
+     */
     public void onClick(View v) {
     if(v ==buttonLogin ){
         loginUser();

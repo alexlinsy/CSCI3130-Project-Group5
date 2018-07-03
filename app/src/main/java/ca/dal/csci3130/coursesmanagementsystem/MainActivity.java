@@ -22,6 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Pattern;
+/**
+ * Class that create a frame for people who register the course management system.
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -31,19 +35,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    /**
+     * Define the input fields
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     progressDialog = new ProgressDialog(this);
     firebaseAuth = FirebaseAuth.getInstance();
-
-
-        /*if(firebaseAuth.getCurrentUser() !=null){
-            //execute profile
-            finish();
-            // startActivities(new Intent(getApplicationContext(),Profile_act.class));
-            startActivity(new Intent(getApplicationContext(), Profile_act.class));
+    /*if(firebaseAuth.getCurrentUser() !=null){
+        //execute profile
+        finish();
+       // startActivities(new Intent(getApplicationContext(),Profile_act.class));
+        startActivity(new Intent(getApplicationContext(), Profile_act.class));
         }*/
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
     editTextEmail = (EditText)findViewById(R.id.editTextEmail);
@@ -51,11 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     textViewSignin = (TextView)findViewById(R.id.textViewSignin);
     buttonRegister.setOnClickListener(this);
     textViewSignin.setOnClickListener(this);
-
     databaseReference = FirebaseDatabase.getInstance().getReference("User");
     FirebaseUser user = firebaseAuth.getCurrentUser();
     }
-
+    /**
+     * Method that authorized user to create a personal account, and validate the input password.
+     */
     private void registerUser(){
         String email = editTextEmail.getText().toString().trim();
         String password= editTextPassword.getText().toString().trim();
@@ -70,30 +76,65 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
             //email is empty, stopping the function execution
         }
-        progressDialog.setMessage("Registering User...");
-        progressDialog.show();
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            //user is successfully reg and logged in
-                           // Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                            //progressDialog.cancel();
-                            //execute profile
-                            //startActivity(new Intent(getApplicationContext(), Login.class));
-                            createUserStructure();
-                            Toast.makeText(MainActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
-                            progressDialog.cancel();
-                        }else{
-                            Toast.makeText(MainActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();
-                            progressDialog.cancel();
+        if(validate(password)==true) {
+            progressDialog.setMessage("Registering User...");
+            progressDialog.show();
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                createUserStructure();
+                                Toast.makeText(MainActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
+                                progressDialog.cancel();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();
+                                progressDialog.cancel();
+                            }
                         }
-                    }
-                });
-    }
+                    });
+        }
+        if(validate(password)==false){
+            Toast.makeText(MainActivity.this, "Password invalid, try to input new password\nValid password must contain at least one uppercase and lowercase character, digit.\n And length cannot longer than 12.", Toast.LENGTH_SHORT).show();
+            }
+        }
 
-    private void createUserStructure(){
+    /**
+     * Method that validate user's password
+     * @param password This user's password.Should include at least one uppercase and lowercase character and digit, and length cannot longer than 12.
+     * @return Return the result of validation (true or false)
+     */
+        public boolean validate(String password){
+            Pattern uppercase = Pattern.compile("[A-Z]");//requirement1: include uppercase
+            Pattern lowercase = Pattern.compile("[a-z]");//requirement2: include lowercase
+            Pattern digitCase = Pattern.compile("[0-9]");//requirement3: include digits
+            Pattern whitespace = Pattern.compile( "[ \\t\\n\\x0B\\f\\r]");//requirement4: whitespace is not allowed
+            int length = password.length();//requirement5: check the length of password
+            if(!uppercase.matcher(password).find()){
+                return false;
+            }
+            if(!lowercase.matcher(password).find()){
+                return false;
+            }
+            if(!digitCase.matcher(password).find()){
+
+                return false;
+            }
+            if(whitespace.matcher(password).find()){
+
+                return false;
+            }
+            if(length<12){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    /**
+     * Method that create a frame for user and it contains some default variables
+     */
+        private void createUserStructure(){
         FirebaseUser user = firebaseAuth.getCurrentUser();
         String name = "Your Name:";
         String faculty ="Your Faculty";
@@ -104,7 +145,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         databaseReference.child(id).setValue(userInformation);
     }
     @Override
-
+    /**
+     * Execute the registerUser method or turn to login page
+     * @param view If user click register button, then Firebase will generate a default user frame
+     *              If user click Signin text, then the interface will turn to login page
+     */
     public void onClick(View view) {
      if(view == buttonRegister) {
          registerUser();
@@ -112,8 +157,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     if(view ==textViewSignin){
          startActivity(new Intent(this, Login.class));
     }
-
-
-     }
+    }
     }
 

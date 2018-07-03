@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="89dp"
+            android:layout_height="35dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="96dp"
+            android:layout_height="34dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/seat"
+            android:layout_width="103dp"
+            android:layout_height="35dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/avilable"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="100" />
+
+        <TextView
+            android:id="@+id/cur"
+            android:layout_width="40dp"
+            android:layout_height="39dp"
+            android:text="   0" />
+    </TableRow>
+
+</LinearLayout>

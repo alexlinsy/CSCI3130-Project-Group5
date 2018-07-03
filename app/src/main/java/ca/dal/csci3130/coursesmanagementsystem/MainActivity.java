@@ -147,8 +147,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     /**
      * Execute the registerUser method or turn to login page
-     * @param view If user click register button, then Firebase will generate a default user frame
-     *              If user click Signin text, then the interface will turn to login page
+     * @param view If user clicks register button, then Firebase will generate a default user frame
+     *              If user clicks Signin text, then the interface will turn to login page
      */
     public void onClick(View view) {
      if(view == buttonRegister) {

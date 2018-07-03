@@ -16,11 +16,6 @@
         <item>Science</item>
     </string-array>
 
-    <string-array name="spinner3">
-        <item>CSCI 2100</item>
-        <item>CSCI 2110</item>
-        <item>CSCI 2121</item>
-        <item>CSCI 2132</item>
-    </string-array>
-    <string name ="textview">textView</string>
+
+    <string name="textview">textView</string>
 </resources>

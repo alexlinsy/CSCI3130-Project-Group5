@@ -2,9 +2,9 @@ package ca.dal.csci3130.coursesmanagementsystem;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 /**
  * Class that allow users to login their account
  */
@@ -78,6 +76,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                            // startActivities(new Intent(getApplicationContext(),Profile_act.class));
                             Toast.makeText(Login.this, "Login Successfully\n Now you can edit your information", Toast.LENGTH_SHORT).show();
                             progressDialog.cancel();
+                            startActivity(new Intent(Login.this, IntermediaryActivity.class));
                             //finish();
 
                            // startActivity(new Intent(getApplicationContext(), Profile_act.class));

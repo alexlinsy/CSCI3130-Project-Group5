@@ -8,51 +8,55 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="272dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="204dp"
+        android:layout_width="273dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:hint="Enter your email"
         app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.909" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="273dp"
         android:layout_height="52dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginBottom="108dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:hint="Enter your password"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="136dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="52dp"
         android:text="Register User"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewSignin"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewSignin"
-        android:layout_width="267dp"
+        android:layout_width="275dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="88dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="Sign in here"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

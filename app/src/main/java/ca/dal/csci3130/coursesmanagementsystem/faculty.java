@@ -4,7 +4,15 @@ public class faculty {
     private String courseIntro;
     private String courseName;
     private String professor;
-    //private String courseIntro;
+    private String taInfo;
+
+    public String getTaInfo() {
+        return taInfo;
+    }
+
+    public void setTaInfo(String taInfo) {
+        this.taInfo = taInfo;
+    }
 
     private String uid;
 

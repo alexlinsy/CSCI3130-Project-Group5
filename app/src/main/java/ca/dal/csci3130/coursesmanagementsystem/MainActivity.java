@@ -20,17 +20,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+//This will function as a timetable to display course info based on year and your major
+//Note: major is stored as "faculty" table in firebase database.
 public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
-    ListView list;
+    ListView list;//not sure what this will be used for, need refactoring later on.
     //private FirebaseListAdapter<available_seats> firebaseAdapter;
     //Spinner spinner;
     TextView textView;
-    Spinner dropdown ;
-    Spinner dropdown2 ;
-    String spinner1_default = "Year 1";
-    String spinner2_default = "arts";
+    String Ta="";
+    //TextView taInfo;
+    ArrayList<Ta> tas = new ArrayList<Ta>();
+    Spinner dropdown ;//will refactor later
+    Spinner dropdown2 ;//will refactor later :using more meaningful variable name
+    String spinner1_default = "Year 1";//by default, the current table will display Year
+    String spinner2_default = "arts";//and art.
+    //database reference current sets to faculty.
     DatabaseReference faculty = FirebaseDatabase.getInstance().getReference("faculty");
 
+    //will create a list of course based on your faculty and year
     List<faculty> facultyList;
 
     @Override
@@ -38,6 +45,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //taInfo = (TextView)findViewById(R.id.TaInfo);
         //textView = (TextView)findViewById(R.id.courseIntro) ;
         //FacultyData facultyData  = (FacultyData)getApplication();
         FirebaseDatabase fac = FirebaseDatabase.getInstance();
@@ -45,7 +53,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         //list.setAdapter(firebaseAdapter);
 
 
-        textView = (TextView)findViewById(R.id.courseIntro);
+        textView = (TextView)findViewById(R.id.detailTa);
         //get the spinner from the xml.
         dropdown =(Spinner) findViewById(R.id.spinner1);
         //create a list of items for the spinner.
@@ -93,12 +101,32 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 facultyList.clear();
-                for(DataSnapshot courseSnapshot :dataSnapshot.getChildren()){
+                for(final DataSnapshot courseSnapshot :dataSnapshot.getChildren()){
                     ca.dal.csci3130.coursesmanagementsystem.faculty fac = courseSnapshot.getValue(ca.dal.csci3130.coursesmanagementsystem.faculty.class);
                     //faculty course = new faculty();
                     //course.setCourseName(fac.);
                     fac.setUid(dataSnapshot.getKey());
+                    DatabaseReference data = faculty.child("ta");
+                    Iterable<DataSnapshot> id = courseSnapshot.child("ta").getChildren();
+                    while(id.iterator().hasNext()) {
+                        DataSnapshot str = id.iterator().next();
+                        String s = str.getKey();
+                        String email = str.getValue().toString();
+                        Ta ta = new Ta(s, email);
+                        tas.add(ta);
+                    }
+                        for(int i = 0; i< tas.size();i++){
+                            Ta +=tas.get(i).getName()+ " : "+tas.get(i).getEmail()+"\n";
+                        }
+
+                    fac.setTaInfo(Ta);
+                    Ta ="";
+                    tas.clear();
+
+                    //Ta = nw
+
                     facultyList.add(fac);
+
                 }
                 //ArrayAdapter adapter = new ArrayAdapter()
                 facultyList adapter = new facultyList(MainActivity.this,facultyList);
@@ -160,9 +188,32 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                     //faculty course = new faculty();
                     fac.setUid(courseSnapshot.getKey());
                     ///fac.setCourseIntro();
+
                     //fac.setCourseIntro(courseSnapshot.);
-                    //course.setCourseName(fac.);
+                    //course.setCourseName(fac.);d
+                    Iterable<DataSnapshot> id = courseSnapshot.child("ta").getChildren();
+                    //id.iterator();
+                    //id.iterator();
+                    while(id.iterator().hasNext()) {
+                        DataSnapshot str = id.iterator().next();
+                        String s = str.getKey();
+                        String email = str.getValue().toString();
+                        Ta ta = new Ta(s, email);
+                        tas.add(ta);
+                    }
+                        for(int i = 0; i< tas.size();i++){
+                            Ta +=tas.get(i).getName()+ " : "+tas.get(i).getEmail()+"\n";
+                        
+                    }
+                    fac.setTaInfo(Ta);
+                    Ta ="";
+                    tas.clear();
+
+                    //String str = id.toString();
                     facultyList.add(fac);
+                    //DatabaseReference taLink = faculty.child("ta");
+
+
                 }
                 //ArrayAdapter adapter = new ArrayAdapter()
                 facultyList adapter = new facultyList(MainActivity.this,facultyList);
@@ -198,6 +249,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     public void showDetailView(faculty course){
         //textView = (TextView)findViewById(R.id.courseIntro);
         //textView.setText(course.getCourseName());
+        TaInfo.setInfo(course.getTaInfo());
         moreInfo.setCourseInfo(course.getCourseIntro());
         Intent intent = new Intent(this,moreInfo.class);
         //intent.putExtra("course", course);

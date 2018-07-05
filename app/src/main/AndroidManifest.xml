@@ -25,6 +25,11 @@
         <activity android:name=".myCourse" />
         <activity android:name=".moreInfo" />
         <activity android:name=".TaInfo"></activity>
+        <activity android:name=".Year1"></activity>
+        <activity android:name=".Year4"></activity>
+        <activity android:name=".Year3"></activity>
+        <activity android:name=".Year2"></activity>
+        <activity android:name=".level"></activity>
     </application>
 
 </manifest>

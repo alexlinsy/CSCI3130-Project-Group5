@@ -7,14 +7,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 /**
- * This is the main activity of Faculty
- * including 4 majors: Computer Year2, Year2, Year3, Year4
+ * This is the activity of Faculty part
+ * including 4 majors: Computer Science, Commerce, Science, Art
  * and design in the form of buttons
  */
 public class courseRecommand extends AppCompatActivity {
-
+    /**
+     * @param id is used for which faulties' year1, year2,year3, and year4
+     */
     private static int id;
-
+    /**
+     *
+     * @param savedInstanceState Define the input fields
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +28,7 @@ public class courseRecommand extends AppCompatActivity {
 
     /**
      * we create 4 buttons of faculties and after clicking,
-     * jump into course level page
+     * jump into course level pages
      */
 
     public void onButtonClick(View v) {

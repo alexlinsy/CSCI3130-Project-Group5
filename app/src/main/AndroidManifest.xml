@@ -19,7 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
-        <activity android:name=".IntermediaryActivity"></activity>
+        <activity android:name=".IntermediaryActivity" />
+        <activity android:name=".academicTimeTable" />
+        <activity android:name=".courseRecommand" />
+        <activity android:name=".myCourse" />
+        <activity android:name=".moreInfo" />
+        <activity android:name=".TaInfo"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dal"
+    tools:context=".courseRecommand"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/BComputerScience"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="115dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="Computer Science"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/BCommerce"
+        app:layout_constraintEnd_toStartOf="@+id/BArts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BArts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginTop="115dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="arts"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/BScience"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/BComputerScience"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BCommerce"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginStart="36dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="commerce"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/BScience"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BComputerScience" />
+
+    <Button
+        android:id="@+id/BScience"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="41dp"
+        android:background="@android:color/darker_gray"
+        android:onClick="onButtonClick"
+        android:text="science"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/BCommerce"
+        app:layout_constraintTop_toBottomOf="@+id/BArts" />
+
+</android.support.constraint.ConstraintLayout>

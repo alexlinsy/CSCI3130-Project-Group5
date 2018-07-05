@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".moreInfo">
+
+    <TextView
+        android:id="@+id/courseIntro"
+        android:layout_width="278dp"
+        android:layout_height="347dp"
+        android:layout_marginBottom="142dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="78dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/TaInfo"
+        android:layout_width="255dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="57dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="39dp"
+        android:onClick="onClick"
+        android:text="Check Ta Info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseIntro" />
+</android.support.constraint.ConstraintLayout>

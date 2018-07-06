@@ -27,6 +27,7 @@ public class courseInfo {
     public void setProfessor(String professor){
         this.professor = professor;
     }
+
     public void setTime(String time){
         this.time = time;
     }
@@ -49,5 +50,18 @@ public class courseInfo {
         return imageUrl;
     }
 
-
 }
+
+/***
+ * Class for get course detail infomation
+ * @param courseInfo the course introduction
+ * @param courseName the name of the course
+ * @param location the course's location
+ * @param professor the name of professor
+ * @param time the schedule of the course
+ * @return the detail of course info
+ * @return the name of course
+ * @return the location of the course
+ * @return the name of professor
+ * @return the schedule of the course
+ */

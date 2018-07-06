@@ -100,7 +100,9 @@ public class CourseRegisterActivity extends AppCompatActivity {
 
 
     }
-
+    /**
+     * Method to create the effect when click the image button
+     * */
     public static void buttonEffect(View button){
         button.setOnTouchListener(new View.OnTouchListener() {
 

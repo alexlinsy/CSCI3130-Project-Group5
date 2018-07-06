@@ -12,3 +12,8 @@ public class userCourses {
         return userCourseName;
     }
 }
+/**
+ * Class for add courses to a user
+ * @param userCourseName course Name of the added course
+ * @return String userCourseName
+ * */

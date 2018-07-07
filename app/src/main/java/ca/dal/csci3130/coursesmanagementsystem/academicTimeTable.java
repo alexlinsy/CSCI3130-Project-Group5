@@ -20,11 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is created to show the timetable of the courseList
+ * It has two spinner to choose both major and year
+ * It can show the course name, the number of course seat, course time and professor
+ */
 public class academicTimeTable extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ListView list;//not sure what this will be used for, need refactoring later on.
-    //private FirebaseListAdapter<available_seats> firebaseAdapter;
-    //Spinner spinner;
+    ListView list;
     TextView textView;
     String Ta="";
     //TextView taInfo;
@@ -33,17 +36,25 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
     Spinner dropdown2 ;//will refactor later :using more meaningful variable name
     String spinner1_default = "Year 1";//by default, the current table will display Year
     String spinner2_default = "arts";//and art.
+
     //database reference current sets to faculty.
     DatabaseReference faculty = FirebaseDatabase.getInstance().getReference("faculty");
+
     //will create a list of course based on your faculty and year
     List<course> courseList;// facultyList should be named as courseList
+
+    /**
+     * Add two spinner to get the specific year and majot
+     * get the specific course information from database
+     * @param savedInstanceState create a timetable UI
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_time_table);
 
-        textView = (TextView)findViewById(R.id.detailTa);//detailTa is the TextView object in
-        //activity moreInfo.xml
+        //detailTa is the TextView object in activity moreInfo.xml
+        textView = (TextView)findViewById(R.id.detailTa);
 
 
         //"Year" values in the dropdown button.
@@ -64,18 +75,18 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         dropdown2.setAdapter(adapter2);
         dropdown2.setOnItemSelectedListener(this);
 
-
-
-
-
-
         //listView will be used to print course information for each course retrieved.
         list = (ListView)findViewById(R.id.listView);
+
         //default database reference sets to faculty/arts/year1
         faculty = FirebaseDatabase.getInstance().getReference("faculty").child("arts").child("year1");
         courseList = new ArrayList<course>();
     }
 
+    /**
+     * This method is used to get the ta information, when you click the button to check the ta information
+     * It will get the ta information from the database
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -137,6 +148,13 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         });
     }
 
+    /**
+     * This method is used to get the specific course information that you clicked
+     * @param parent get the last acticity
+     * @param view  get the button information
+     * @param position get the position you selected
+     * @param id get the id you selected
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -188,17 +206,13 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                     fac.setTaInfo(Ta);
                     Ta ="";
                     tas.clear();
-
-                    //String str = id.toString();
                     courseList.add(fac);
-                    //DatabaseReference taLink = faculty.child("ta");
                 }
                 courseList adapter = new courseList(academicTimeTable.this,courseList);
                 list.setAdapter(adapter);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        /// faculty course = facultyList.
                         course cour = courseList.get(position);
                         showDetailView(cour);
                     }
@@ -216,13 +230,16 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    /**
+     * This method is used to get the course introduction when you click the specific course
+     * @param course Use the course object which store the course information
+     */
     public void showDetailView(course course){
 
         //this method will set the VALUES for course IntroUI and Ta email UI.
         TaInfo.setInfo(course.getTaInfo());
         moreInfo.setCourseInfo(course.getCourseIntro());
         Intent intent = new Intent(this,moreInfo.class);
-        //intent.putExtra("course", course);
         //JUMP to next UI.
         startActivity(intent);
     }

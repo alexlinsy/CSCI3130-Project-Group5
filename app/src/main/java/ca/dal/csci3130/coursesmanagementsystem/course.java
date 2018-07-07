@@ -1,5 +1,10 @@
 package ca.dal.csci3130.coursesmanagementsystem;
 
+/**
+ * This class is used to make a same structure of our data in database
+ * in order to get the information from the database
+ * The information include course introduction, course name, course professor and seat
+ */
 public class course {
     private String courseIntro;
     private String courseName;

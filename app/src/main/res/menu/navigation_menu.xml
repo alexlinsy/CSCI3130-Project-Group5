@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_account" android:title="my Account" />
+    <item android:id="@+id/nav_settings" android:title="Setting" />
+    <item android:id="@+id/nav_logout" android:title="Log out"/>
+    <item android:id="@+id/my_grade" android:title="my grade"/>
+    <item android:id="@+id/add_drop" android:title="add/drop"/>
+
+
+
+</menu>

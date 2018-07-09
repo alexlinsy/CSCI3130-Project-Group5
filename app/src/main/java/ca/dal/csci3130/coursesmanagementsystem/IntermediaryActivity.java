@@ -43,10 +43,6 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
                 Intent courseRecommand = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.courseRecommand.class);
                 startActivity(courseRecommand);
                 break;
-           /* case R.id.myCoursesButton:
-                Intent myCourse = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.myCourse.class);
-                startActivity(myCourse);
-                break;*/
         }
     }
 }

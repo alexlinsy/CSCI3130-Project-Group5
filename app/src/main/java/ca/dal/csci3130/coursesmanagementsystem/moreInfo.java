@@ -19,8 +19,6 @@ public class moreInfo extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_more_info);
         detailInfo = (TextView)findViewById(R.id.courseIntro);
         taInfo =(Button)findViewById(R.id.TaInfo);
-        //text = (TextView)findViewById(R.id.TaInfo)
-        //course.setCourseIntro(c);
         detailInfo.setText(courseInfo);
 
     }

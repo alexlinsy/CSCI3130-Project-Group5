@@ -1,5 +1,9 @@
 package ca.dal.csci3130.coursesmanagementsystem;
 
+/**
+ * This class is defined by get the information from database, and store the data to TA object
+ */
+
 public class TA {
 
     private String email;

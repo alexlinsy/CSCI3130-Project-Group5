@@ -1,9 +1,9 @@
 package ca.dal.csci3130.coursesmanagementsystem;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -192,6 +192,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                     //same code as the one in onStart.
                     fac.setUid(courseSnapshot.getKey());
                     Iterable<DataSnapshot> id = courseSnapshot.child("ta").getChildren();
+
                     while(id.iterator().hasNext()) {
                         DataSnapshot str = id.iterator().next();
                         String s = str.getKey();
@@ -199,16 +200,19 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                         TA ta = new TA(s, email);
                         tas.add(ta);
                     }
+
                     for(int i = 0; i< tas.size();i++){
                         Ta +=tas.get(i).getName()+ " : "+tas.get(i).getEmail()+"\n";
-
                     }
+
                     fac.setTaInfo(Ta);
                     Ta ="";
                     tas.clear();
                     courseList.add(fac);
                 }
+
                 courseList adapter = new courseList(academicTimeTable.this,courseList);
+
                 list.setAdapter(adapter);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -236,11 +240,22 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
      */
     public void showDetailView(course course){
 
-        //this method will set the VALUES for course IntroUI and Ta email UI.
+        /*this method will set the VALUES for course IntroUI and Ta email UI.
         TaInfo.setInfo(course.getTaInfo());
         moreInfo.setCourseInfo(course.getCourseIntro());
         Intent intent = new Intent(this,moreInfo.class);
         //JUMP to next UI.
+        startActivity(intent); */
+        Intent intent = new Intent(academicTimeTable.this, CourseRegisterActivity.class);
+        String courseId = course.getUid();
+
+        Bundle extras = new Bundle();
+        extras.putString("EXTRA_COURSEID", courseId);
+        extras.putString("EXTRA_YEAR", spinner1_default);
+        extras.putString("EXTRA_MAJOR", spinner2_default);
+        intent.putExtras(extras);
+
         startActivity(intent);
+
     }
 }

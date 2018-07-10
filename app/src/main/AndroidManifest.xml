@@ -22,14 +22,15 @@
         <activity android:name=".IntermediaryActivity" />
         <activity android:name=".academicTimeTable" />
         <activity android:name=".courseRecommand" />
-        <activity android:name=".myCourse" />
         <activity android:name=".moreInfo" />
-        <activity android:name=".TaInfo"></activity>
-        <activity android:name=".Year1"></activity>
-        <activity android:name=".Year4"></activity>
-        <activity android:name=".Year3"></activity>
-        <activity android:name=".Year2"></activity>
-        <activity android:name=".level"></activity>
+        <activity android:name=".TaInfo" />
+        <activity android:name=".Year1" />
+        <activity android:name=".Year4" />
+        <activity android:name=".Year3" />
+        <activity android:name=".Year2" />
+        <activity android:name=".level" />
+        <activity android:name=".CourseRegisterActivity" />
+        <activity android:name=".UserActivity"></activity>
     </application>
 
 </manifest>

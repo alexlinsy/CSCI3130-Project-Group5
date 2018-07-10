@@ -16,4 +16,10 @@
     </string-array>
     <string name="textview">textView</string>
 
+    <string name="course_number">Course Number</string>
+    <string name="professor_name">Professor Name</string>
+    <string name="todo">TODO</string>
+    <string name="course_intro">Course Intro</string>
+    <string name="myCourses">My Courses</string>
+
 </resources>

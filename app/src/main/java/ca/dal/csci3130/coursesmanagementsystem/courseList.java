@@ -39,11 +39,14 @@ public class courseList extends ArrayAdapter<course> {
         View listViewItem = inflater.inflate(R.layout.list_layout,null,true);
         TextView textView =(TextView)listViewItem.findViewById(R.id.name);
         TextView textView1 = (TextView)listViewItem.findViewById(R.id.intro);
-        TextView textView2 = (TextView)listViewItem.findViewById(R.id.seat);
+        TextView textView2 = (TextView)listViewItem.findViewById(R.id.avilable);
+        TextView cur_seat = (TextView)listViewItem.findViewById(R.id.cur);
         course fac = courseList.get(position);
         textView.setText(fac.getUid());
         textView1.setText(fac.getProfessor());
+        int cur = 100 - fac.getSeat();
         textView2.setText((""+ fac.getSeat()));
+        cur_seat.setText("   " +cur);
 
         return listViewItem;
     }

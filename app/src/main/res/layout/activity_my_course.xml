@@ -17,7 +17,7 @@
         android:layout_marginEnd="78dp"
         android:layout_marginStart="73dp"
         android:layout_marginTop="165dp"
-        android:text="TextView"
+        android:text="Welcome to MyCourse!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

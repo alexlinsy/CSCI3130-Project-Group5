@@ -10,7 +10,7 @@ import android.view.View;
  * show the course template for 4 majors: Computer Science, Commerce, Science, Art
  * and design in the form of buttons
  */
-public class courseRecommand extends AppCompatActivity {
+public class courseRecommend extends AppCompatActivity {
     /**
      * @param id is used for which recognize 4 different majors
      * set it as static variable used for other class
@@ -35,10 +35,33 @@ public class courseRecommand extends AppCompatActivity {
 
 
         //when click button COMPUTER SCIENCE, SCIENCE, ART, COMMERCE jump to level.java
-        if (v.getId() == R.id.BComputerScience || v.getId() == R.id.BArts || v.getId() ==  R.id.BCommerce|| v.getId() == R.id.BScience) {
-            id = v.getId();
-            Intent i = new Intent(courseRecommand.this, level.class);
-            startActivity(i);
+        switch (v.getId()) {
+            case R.id.BComputerScience :
+                id = v.getId();
+                Intent i = new Intent(courseRecommend.this, level.class);
+                startActivity(i);
+                break;
+        }
+        switch (v.getId()) {
+            case R.id.BArts :
+                id = v.getId();
+                Intent i = new Intent(courseRecommend.this, level.class);
+                startActivity(i);
+                break;
+        }
+        switch (v.getId()) {
+            case R.id.BScience :
+                id = v.getId();
+                Intent i = new Intent(courseRecommend.this, level.class);
+                startActivity(i);
+                break;
+        }
+        switch (v.getId()) {
+            case R.id.BCommerce :
+                id = v.getId();
+                Intent i = new Intent(courseRecommend.this, level.class);
+                startActivity(i);
+                break;
         }
     }
 
@@ -58,6 +81,6 @@ public class courseRecommand extends AppCompatActivity {
      */
 
     public static void setId(int id) {
-        courseRecommand.id = id;
+        courseRecommend.id = id;
     }
 }

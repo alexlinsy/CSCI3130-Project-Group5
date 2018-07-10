@@ -11,11 +11,20 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This class is defined by showing a navigation view, and it including some functions
+ * In iteration 2, we just focus on building the logout function
+ */
 public class myCourse extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawLayout;
     private ActionBarDrawerToggle mToggle;
     private TextView myInfo;
     private static String email="";
+
+    /**
+     * The new activity will show a navigation view which has some buttons
+     * @param savedInstanceState Create a new activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +38,12 @@ public class myCourse extends AppCompatActivity implements NavigationView.OnNavi
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    /**
+     * Check whether user clicked one of button in navigation view
+     * @param item Item that user clicked
+     * @return Return the true and false
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mToggle.onOptionsItemSelected(item)) {
@@ -38,11 +53,17 @@ public class myCourse extends AppCompatActivity implements NavigationView.OnNavi
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * If user clicked the button callled logout, and then it will return it to login activity
+     * We also have some other functions and we would like to complete them in Iteration 3
+     * @param item The item that user clicked
+     * @return return false if nothing selected
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.nav_account) {
-            Toast.makeText(this, "This is my setthing", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "This is my setting", Toast.LENGTH_SHORT).show();
             String []info = email.split("@");
             myInfo.setText("Name : "+info[0]+"\n"+"Email : "+email);
             mDrawLayout.closeDrawers();
@@ -51,28 +72,18 @@ public class myCourse extends AppCompatActivity implements NavigationView.OnNavi
         }
         if(id == R.id.nav_settings) {
             Toast.makeText(this, "This is my setthing", Toast.LENGTH_SHORT).show();
-            //setContentView(R.layout.setting);
             mDrawLayout.closeDrawers();
 
 
         }
         if (id == R.id.nav_logout) {
-            //Toast.makeText(this, "This is logout", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }
 
         if (id == R.id.my_grade) {
-            //Toast.makeText(this, "This is logout", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(this,MainActivity.class);
-            // startActivity(intent);
             Toast.makeText(this, "This is my grade", Toast.LENGTH_SHORT).show();
         }
-
-       /* if(id == R.id.add_drop){
-            Intent  intent = new Intent(this,add_drop_course.class);
-            startActivity(intent);
-        }*/
         return false;
     }
 

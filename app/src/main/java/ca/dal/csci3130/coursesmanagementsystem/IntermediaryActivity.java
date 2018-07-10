@@ -40,7 +40,7 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
                 startActivity(timeTable);
                 break;
             case R.id.recommandationButton:
-                Intent courseRecommand = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.courseRecommand.class);
+                Intent courseRecommand = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.courseRecommend.class);
                 startActivity(courseRecommand);
                 break;
 

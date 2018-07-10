@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean cTamplate(String a){
         //if it's Computer Science's 1000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BComputerScience && level.getId() == R.id.B1000){
+        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B1000){
             if(a.equals("-CSCI 1100.03: Computer Year2"))
                 return true;
             else if(a.equals("-MGMT 1000.03: Managing Organizational Issues I"))
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Computer Science's 2000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BComputerScience && level.getId() == R.id.B2000){
+        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B2000){
             if(a.equals("-CSCI 2100.03: Communication Skills: Written and Oral"))
                 return true;
             else if(a.equals("-CSCI 2110.03: Computer Year2 III"))
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Computer Science's 3000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BComputerScience && level.getId() == R.id.B3000){
+        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B3000){
             if(a.equals("-CSCI 3101.03: Social, Ethical, and Professional Issues in Computer Year2"))
                 return true;
             else if(a.equals("-CSCI 3160.03: Designing User Interfaces"))
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Computer Science's 4000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BComputerScience && level.getId() == R.id.B4000){
+        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B4000){
             if(a.equals("-CSCI 4163.03: Human Computer Interaction"))
                 return true;
             else if(a.equals("-CSCI 4140.03: Advanced Database Systems"))
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Art's 1000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BArts && level.getId() == R.id.B1000){
+        if(courseRecommend.getId()==R.id.BArts && level.getId() == R.id.B1000){
             if(a.equals("-GERM 1010 X: German for Beginners"))
                 return true;
             else if(a.equals("-HIST 1510: History of the Future"))
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Art's 3000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BArts && level.getId() == R.id.B3000){
+        if(courseRecommend.getId()==R.id.BArts && level.getId() == R.id.B3000){
             if(a.equals("-GERM 3550: Germany and the Environment"))
                 return true;
             else if(a.equals("-HIST3045: The French Revolution"))
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Science's 1000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BScience && level.getId() == R.id.B1000){
+        if(courseRecommend.getId()==R.id.BScience && level.getId() == R.id.B1000){
             if(a.equals("-MATH 1000.03: Differential and Integral Calculus I"))
                 return true;
             else if(a.equals("-STAT 1060.03: Introductory Statistics for Year2 and Health Sciences"))
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Science's 3000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BScience && level.getId() == R.id.B3000){
+        if(courseRecommend.getId()==R.id.BScience && level.getId() == R.id.B3000){
             if(a.equals("-STAT 3340.03: Regression and Analysis of Variance"))
                 return true;
             else if(a.equals("-STAT 3360.03: Probability"))
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Commerce's 1000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BCommerce && level.getId() == R.id.B1000){
+        if(courseRecommend.getId()==R.id.BCommerce && level.getId() == R.id.B1000){
             if(a.equals("-COMM 1010.03: Business in a Global Context"))
                 return true;
             else if(a.equals("-COMM 1101.03: Financial Accounting"))
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
         }
         //if it's Commerce's 3000-level course, it will return true when show these courses
-        if(courseRecommand.getId()==R.id.BCommerce && level.getId() == R.id.B3000){
+        if(courseRecommend.getId()==R.id.BCommerce && level.getId() == R.id.B3000){
             if(a.equals("-COMM 3111.03: Intermediate Financial Accounting II"))
                 return true;
             else if(a.equals("-COMM 3114.03: External Auditing"))

@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.DisplayCourses;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import ca.dal.csci3130.coursesmanagementsystem.R;
+
 /**
  * This class is defined by showing more information about the class after clicking the course
  * It will include course introduction and ta's name and email
  */
 
-public class moreInfo extends AppCompatActivity implements View.OnClickListener{
+public class MoreInfoActivity extends AppCompatActivity implements View.OnClickListener{
     private static String courseInfo;
     private Button taInfo;
     private TextView detailInfo;
@@ -49,7 +51,7 @@ public class moreInfo extends AppCompatActivity implements View.OnClickListener{
      */
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, TaInfo.class);
+        Intent intent = new Intent(this, TaInfoActivity.class);
         startActivity(intent);
     }
     }

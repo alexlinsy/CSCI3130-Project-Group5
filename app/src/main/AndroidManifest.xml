@@ -18,19 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login" />
-        <activity android:name=".IntermediaryActivity" />
-        <activity android:name=".academicTimeTable" />
-        <activity android:name=".courseRecommend" />
-        <activity android:name=".moreInfo" />
-        <activity android:name=".TaInfo" />
-        <activity android:name=".Year1" />
-        <activity android:name=".Year4" />
-        <activity android:name=".Year3" />
-        <activity android:name=".Year2" />
-        <activity android:name=".level" />
-        <activity android:name=".CourseRegisterActivity" />
-        <activity android:name=".UserActivity"></activity>
+        <activity android:name=".Login.LoginActivity" />
+        <activity android:name=".Login.IntermediaryActivity" />
+        <activity android:name=".DisplayCourses.AcademicTimeTableActivity" />
+        <activity android:name=".CourseRecommandation.CourseRecommendActivity" />
+        <activity android:name=".DisplayCourses.MoreInfoActivity" />
+        <activity android:name=".DisplayCourses.TaInfoActivity" />
+        <activity android:name=".CourseRecommandation.Year1Activity" />
+        <activity android:name=".CourseRecommandation.Year4Activity" />
+        <activity android:name=".CourseRecommandation.Year3Activity" />
+        <activity android:name=".CourseRecommandation.Year2Activity" />
+        <activity android:name=".CourseRecommandation.LevelActivity" />
+        <activity android:name=".CoursesRegister.CourseRegisterActivity" />
+        <activity android:name=".CoursesRegister.UserActivity"></activity>
     </application>
 
 </manifest>

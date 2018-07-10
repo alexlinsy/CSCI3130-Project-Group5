@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.TA;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestForTaObject {

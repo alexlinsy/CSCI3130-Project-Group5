@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.DisplayCourses;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import ca.dal.csci3130.coursesmanagementsystem.R;
+
 /**
  * This class is defined by showing the ta information and get the data from database
  */
 
-public class TaInfo extends AppCompatActivity {
+public class TaInfoActivity extends AppCompatActivity {
     protected TextView taInfo;
     protected static String info ;
 

@@ -2,6 +2,8 @@ package ca.dal.csci3130.coursesmanagementsystem;
 
 import org.junit.Test;
 
+import ca.dal.csci3130.coursesmanagementsystem.CoursesRegister.courseInfo;
+
 import static org.junit.Assert.assertEquals;
 
 public class courseInfoTest {

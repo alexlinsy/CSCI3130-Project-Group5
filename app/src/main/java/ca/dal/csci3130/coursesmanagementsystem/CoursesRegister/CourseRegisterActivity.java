@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import ca.dal.csci3130.coursesmanagementsystem.R;
 
 public class CourseRegisterActivity extends AppCompatActivity {
 

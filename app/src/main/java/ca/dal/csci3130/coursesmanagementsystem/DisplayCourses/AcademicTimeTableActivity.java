@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.DisplayCourses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,12 +19,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.dal.csci3130.coursesmanagementsystem.CoursesRegister.CourseRegisterActivity;
+import ca.dal.csci3130.coursesmanagementsystem.R;
+
 /**
  * This class is created to show the timetable of the courseList
  * It has two spinner to choose both major and year
  * It can show the course name, the number of course seat, course time and professor
  */
-public class academicTimeTable extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AcademicTimeTableActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ListView list;//items displayed for based on the current spinner value.
     String Ta="";
@@ -60,14 +62,14 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         dropdown_year =(Spinner) findViewById(R.id.spinner1);
 
         //the following methods will set adapters and activate dropdown event selector listener.
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(academicTimeTable.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinner1));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AcademicTimeTableActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinner1));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         dropdown_year.setAdapter(adapter);
         dropdown_year.setOnItemSelectedListener(this);
 
         //same as above.
         dropdown_major = findViewById(R.id.spinner2);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(academicTimeTable.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.spinner2));
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(AcademicTimeTableActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.spinner2));
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
         dropdown_major.setAdapter(adapter2);
         dropdown_major.setOnItemSelectedListener(this);
@@ -92,7 +94,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 courseList.clear();
                 for(final DataSnapshot courseSnapshot :dataSnapshot.getChildren()){
-                    ca.dal.csci3130.coursesmanagementsystem.course fac = courseSnapshot.getValue(ca.dal.csci3130.coursesmanagementsystem.course.class);
+                    course fac = courseSnapshot.getValue(course.class);
                     //each course is a key.
                     fac.setUid(dataSnapshot.getKey());
 
@@ -121,7 +123,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                     //add to courseList.
                     courseList.add(fac);
                 }
-                courseList adapter = new courseList(academicTimeTable.this,courseList);
+                ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.courseList adapter = new courseList(AcademicTimeTableActivity.this,courseList);
                 list.setAdapter(adapter);
                 //click on one entries from the listView, jump to course Intro.
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -180,7 +182,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                 courseList.clear();
 
                 for(DataSnapshot courseSnapshot :dataSnapshot.getChildren()){
-                    ca.dal.csci3130.coursesmanagementsystem.course fac = courseSnapshot.getValue(ca.dal.csci3130.coursesmanagementsystem.course.class);
+                    course fac = courseSnapshot.getValue(course.class);
 
                     //same code as the one in onStart.
                     fac.setUid(courseSnapshot.getKey());
@@ -204,7 +206,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                     courseList.add(fac);
                 }
 
-                courseList adapter = new courseList(academicTimeTable.this,courseList);
+                courseList adapter = new courseList(AcademicTimeTableActivity.this,courseList);
 
                 list.setAdapter(adapter);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -234,19 +236,19 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
     public void showDetailView(course course){
 
         /*this method will set the VALUES for course IntroUI and Ta email UI.
-        TaInfo.setInfo(course.getTaInfo());
-        moreInfo.setCourseInfo(course.getCourseIntro());
-        Intent intent = new Intent(this,moreInfo.class);
+        TaInfoActivity.setInfo(course.getTaInfo());
+        MoreInfoActivity.setCourseInfo(course.getCourseIntro());
+        Intent intent = new Intent(this,MoreInfoActivity.class);
 
         //JUMP to next UI.
         startActivity(intent); */
-        Intent intent = new Intent(academicTimeTable.this, CourseRegisterActivity.class);
+        Intent intent = new Intent(AcademicTimeTableActivity.this, CourseRegisterActivity.class);
         String courseId = course.getUid();
 
         Bundle extras = new Bundle();
         extras.putString("EXTRA_COURSEID", courseId);
-        extras.putString("EXTRA_YEAR", spinner1_default);
-        extras.putString("EXTRA_MAJOR", spinner2_default);
+        extras.putString("EXTRA_YEAR", year);
+        extras.putString("EXTRA_MAJOR", major);
         intent.putExtras(extras);
 
         startActivity(intent);

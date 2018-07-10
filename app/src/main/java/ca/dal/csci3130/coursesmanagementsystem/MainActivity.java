@@ -22,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
+import ca.dal.csci3130.coursesmanagementsystem.Login.LoginActivity;
+import ca.dal.csci3130.coursesmanagementsystem.Login.UserInformation;
+
 /**
  * Class that create a frame for people who register the course management system.
  */
@@ -163,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          registerUser();
      }
     if(view ==textViewSignin){
-         startActivity(new Intent(this, Login.class));
+         startActivity(new Intent(this, LoginActivity.class));
        }
     }
 }

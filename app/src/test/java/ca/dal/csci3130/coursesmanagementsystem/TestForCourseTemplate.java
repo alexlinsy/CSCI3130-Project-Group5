@@ -2,6 +2,9 @@ package ca.dal.csci3130.coursesmanagementsystem;
 
 import org.junit.Test;
 
+import ca.dal.csci3130.coursesmanagementsystem.CourseRecommandation.CourseRecommendActivity;
+import ca.dal.csci3130.coursesmanagementsystem.CourseRecommandation.LevelActivity;
+
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
@@ -15,14 +18,14 @@ public class TestForCourseTemplate {
 
     /**
      * This boolean method use for junit test
-     * with the specific faculties' button id and level's button id
+     * with the specific faculties' button id and LevelActivity's button id
      * it should show corresponding course
      * @param a is a string of course name
      */
     public boolean cTamplate(String a){
-        //if it's Computer Science's 1000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B1000){
-            if(a.equals("-CSCI 1100.03: Computer Year2"))
+        //if it's Computer Science's 1000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BComputerScience && LevelActivity.getId() == R.id.B1000){
+            if(a.equals("-CSCI 1100.03: Computer Year2Activity"))
                 return true;
             else if(a.equals("-MGMT 1000.03: Managing Organizational Issues I"))
                 return true;
@@ -30,7 +33,7 @@ public class TestForCourseTemplate {
                 return true;
             else if(a.equals("-Two 1000 Level Free Electives"))
                 return true;
-            else if(a.equals("-CSCI 1101.03: Computer Year2 II"))
+            else if(a.equals("-CSCI 1101.03: Computer Year2Activity II"))
                 return true;
             else if(a.equals("-MGMT 1001.03: Managing Organizational Issues II"))
                 return true;
@@ -40,11 +43,11 @@ public class TestForCourseTemplate {
                 return true;
         }
 
-        //if it's Computer Science's 2000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B2000){
+        //if it's Computer Science's 2000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BComputerScience && LevelActivity.getId() == R.id.B2000){
             if(a.equals("-CSCI 2100.03: Communication Skills: Written and Oral"))
                 return true;
-            else if(a.equals("-CSCI 2110.03: Computer Year2 III"))
+            else if(a.equals("-CSCI 2110.03: Computer Year2Activity III"))
                 return true;
             else if(a.equals("-CSCI 2132.03: Software Development"))
                 return true;
@@ -64,9 +67,9 @@ public class TestForCourseTemplate {
                 return true;
         }
 
-        //if it's Computer Science's 3000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B3000){
-            if(a.equals("-CSCI 3101.03: Social, Ethical, and Professional Issues in Computer Year2"))
+        //if it's Computer Science's 3000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BComputerScience && LevelActivity.getId() == R.id.B3000){
+            if(a.equals("-CSCI 3101.03: Social, Ethical, and Professional Issues in Computer Year2Activity"))
                 return true;
             else if(a.equals("-CSCI 3160.03: Designing User Interfaces"))
                 return true;
@@ -86,8 +89,8 @@ public class TestForCourseTemplate {
                 return true;
         }
 
-        //if it's Computer Science's 4000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B4000){
+        //if it's Computer Science's 4000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BComputerScience && LevelActivity.getId() == R.id.B4000){
             if(a.equals("-CSCI 4163.03: Human Computer Interaction"))
                 return true;
             else if(a.equals("-CSCI 4140.03: Advanced Database Systems"))
@@ -102,8 +105,8 @@ public class TestForCourseTemplate {
                 return true;
         }
 
-        //if it's Art's 1000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BArts && level.getId() == R.id.B1000){
+        //if it's Art's 1000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BArts && LevelActivity.getId() == R.id.B1000){
             if(a.equals("-GERM 1010 X: German for Beginners"))
                 return true;
             else if(a.equals("-HIST 1510: History of the Future"))
@@ -116,8 +119,8 @@ public class TestForCourseTemplate {
                 return true;
         }
 
-        //if it's Art's 3000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BArts && level.getId() == R.id.B3000){
+        //if it's Art's 3000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BArts && LevelActivity.getId() == R.id.B3000){
             if(a.equals("-GERM 3550: Germany and the Environment"))
                 return true;
             else if(a.equals("-HIST3045: The French Revolution"))
@@ -126,11 +129,11 @@ public class TestForCourseTemplate {
                 return true;
         }
 
-        //if it's Science's 1000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BScience && level.getId() == R.id.B1000){
+        //if it's Science's 1000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BScience && LevelActivity.getId() == R.id.B1000){
             if(a.equals("-MATH 1000.03: Differential and Integral Calculus I"))
                 return true;
-            else if(a.equals("-STAT 1060.03: Introductory Statistics for Year2 and Health Sciences"))
+            else if(a.equals("-STAT 1060.03: Introductory Statistics for Year2Activity and Health Sciences"))
                 return true;
             else if(a.equals("-One Writing Requirement"))
                 return true;
@@ -138,14 +141,14 @@ public class TestForCourseTemplate {
                 return true;
             else if(a.equals("-MATH 1010.03: Differential and Integral Calculus II"))
                 return true;
-            else if(a.equals("-CSCI 1101.03: Computer Year2 II"))
+            else if(a.equals("-CSCI 1101.03: Computer Year2Activity II"))
                 return true;
             else if(a.equals("-One Humanity Elective"))
                 return true;
         }
 
-        //if it's Science's 3000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BScience && level.getId() == R.id.B3000){
+        //if it's Science's 3000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BScience && LevelActivity.getId() == R.id.B3000){
             if(a.equals("-STAT 3340.03: Regression and Analysis of Variance"))
                 return true;
             else if(a.equals("-STAT 3360.03: Probability"))
@@ -167,8 +170,8 @@ public class TestForCourseTemplate {
             else if(a.equals("-One Humanity Elective"))
                 return true;
         }
-        //if it's Commerce's 1000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BCommerce && level.getId() == R.id.B1000){
+        //if it's Commerce's 1000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BCommerce && LevelActivity.getId() == R.id.B1000){
             if(a.equals("-COMM 1010.03: Business in a Global Context"))
                 return true;
             else if(a.equals("-COMM 1101.03: Financial Accounting"))
@@ -185,11 +188,11 @@ public class TestForCourseTemplate {
                 return true;
             else if(a.equals("-ECON 1102.03: Principles of Macroeconomics"))
                 return true;
-            else if(a.equals("-MATH 1115.03: Mathematics for Year3"))
+            else if(a.equals("-MATH 1115.03: Mathematics for Year3Activity"))
                 return true;
         }
-        //if it's Commerce's 3000-level course, it will return true when show these courses
-        if(courseRecommend.getId()==R.id.BCommerce && level.getId() == R.id.B3000){
+        //if it's Commerce's 3000-LevelActivity course, it will return true when show these courses
+        if(CourseRecommendActivity.getId()==R.id.BCommerce && LevelActivity.getId() == R.id.B3000){
             if(a.equals("-COMM 3111.03: Intermediate Financial Accounting II"))
                 return true;
             else if(a.equals("-COMM 3114.03: External Auditing"))
@@ -207,7 +210,7 @@ public class TestForCourseTemplate {
             else if(a.equals("-One Free Elective"))
                 return true;
         }
-        //the course name dose not correspond with current faculty button id and level button id will return false
+        //the course name dose not correspond with current faculty button id and LevelActivity button id will return false
         return false;
     }
 
@@ -217,62 +220,62 @@ public class TestForCourseTemplate {
      */
     @Test
     public void test1(){
-        courseRecommend.setId(R.id.BComputerScience );
-        level.setId(R.id.B1000);
+        CourseRecommendActivity.setId(R.id.BComputerScience );
+        LevelActivity.setId(R.id.B1000);
         assertFalse(cTamplate("-CSCI 2100.03: Communication Skills: Written and Oral"));
     }
     @Test
     public void test2(){
-        courseRecommend.setId(R.id.BComputerScience );
-        level.setId(R.id.B2000);
+        CourseRecommendActivity.setId(R.id.BComputerScience );
+        LevelActivity.setId(R.id.B2000);
         assertTrue(!cTamplate("-CSCI 2201.03: Introduction to Information Security"));
     }
     @Test
     public void tes3(){
-        courseRecommend.setId(R.id.BComputerScience );
-        level.setId(R.id.B3000);
+        CourseRecommendActivity.setId(R.id.BComputerScience );
+        LevelActivity.setId(R.id.B3000);
         assertFalse(cTamplate("-CSCI 2100.03: Communication Skills: Written and Oral"));
     }
     @Test
     public void test4(){
-        courseRecommend.setId(R.id.BComputerScience );
-        level.setId(R.id.B4000);
+        CourseRecommendActivity.setId(R.id.BComputerScience );
+        LevelActivity.setId(R.id.B4000);
         assertTrue(!cTamplate("-CSCI 4163.03: Human Computer Interaction"));
     }
     @Test
     public void test5(){
-        courseRecommend.setId(R.id.BArts );
-        level.setId(R.id.B1000);
+        CourseRecommendActivity.setId(R.id.BArts );
+        LevelActivity.setId(R.id.B1000);
         assertFalse(cTamplate("-CSCI 2100.03: Communication Skills: Written and Oral"));
     }
     @Test
     public void test6(){
-        courseRecommend.setId(R.id.BArts );
-        level.setId(R.id.B3000);
+        CourseRecommendActivity.setId(R.id.BArts );
+        LevelActivity.setId(R.id.B3000);
         assertTrue(!cTamplate("-GERM 3550: Germany and the Environment"));
     }
     @Test
     public void test7(){
-        courseRecommend.setId(R.id.BScience );
-        level.setId(R.id.B1000);
+        CourseRecommendActivity.setId(R.id.BScience );
+        LevelActivity.setId(R.id.B1000);
         assertFalse(cTamplate("-CSCI 2100.03: Communication Skills: Written and Oral"));
     }
     @Test
     public void test8(){
-        courseRecommend.setId(R.id.BScience );
-        level.setId(R.id.B3000);
+        CourseRecommendActivity.setId(R.id.BScience );
+        LevelActivity.setId(R.id.B3000);
         assertTrue(!cTamplate("-STAT 3460.03: Intermediate Statistical Theory"));
     }
     @Test
     public void test9(){
-        courseRecommend.setId(R.id.BCommerce );
-        level.setId(R.id.B1000);
+        CourseRecommendActivity.setId(R.id.BCommerce );
+        LevelActivity.setId(R.id.B1000);
         assertFalse(cTamplate("-CSCI 2100.03: Communication Skills: Written and Oral"));
     }
     @Test
     public void test10(){
-        courseRecommend.setId(R.id.BCommerce );
-        level.setId(R.id.B3000);
+        CourseRecommendActivity.setId(R.id.BCommerce );
+        LevelActivity.setId(R.id.B3000);
         assertTrue(!cTamplate("-COMM 3511.03: Management Information Systems"));
     }
 

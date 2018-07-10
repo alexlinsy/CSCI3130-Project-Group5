@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 /**
  * Class for add courses to a user
  *

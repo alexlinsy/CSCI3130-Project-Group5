@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.DisplayCourses;
 
 /**
  * This class is used to make a same structure of our data in database

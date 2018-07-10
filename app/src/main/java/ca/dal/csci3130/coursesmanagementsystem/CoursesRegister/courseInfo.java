@@ -1,11 +1,6 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 /***
  * Class for get course detail infomation
- * @return the detail of course info
- * @return the name of course
- * @return the location of the course
- * @return the name of professor
- * @return the schedule of the course
  */
 public class courseInfo {
 

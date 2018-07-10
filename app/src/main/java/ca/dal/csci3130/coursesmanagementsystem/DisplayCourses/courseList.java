@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.DisplayCourses;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import ca.dal.csci3130.coursesmanagementsystem.R;
+
 /**
  * This class is defined to store course object to a courseList
  * and use this courseList to show all courses timetable and information
@@ -19,7 +21,7 @@ public class courseList extends ArrayAdapter<course> {
     private List<course> courseList;
 
     public courseList(Activity context,List<course>courseList){
-        super(context,R.layout.list_layout,courseList);
+        super(context, R.layout.list_layout,courseList);
         this.context = context;
         this.courseList = courseList;
 

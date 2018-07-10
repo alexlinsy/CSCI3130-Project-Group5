@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import ca.dal.csci3130.coursesmanagementsystem.Login.IntermediaryActivity;
+import ca.dal.csci3130.coursesmanagementsystem.R;
 
 public class UserActivity extends AppCompatActivity {
 

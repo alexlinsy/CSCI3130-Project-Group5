@@ -1,4 +1,4 @@
-package ca.dal.csci3130.coursesmanagementsystem;
+package ca.dal.csci3130.coursesmanagementsystem.MyCourses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import ca.dal.csci3130.coursesmanagementsystem.MainActivity;
+import ca.dal.csci3130.coursesmanagementsystem.R;
 
 /**
  * This class is defined by showing a navigation view, and it including some functions

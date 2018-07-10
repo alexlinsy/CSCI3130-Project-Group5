@@ -36,16 +36,16 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
     Spinner dropdown_year;
     Spinner dropdown_major;
     //by default, the current table will display Year
-    String spinner1_default = "Year 1";
+    String year = "Year 1";
 
     //by default, the current table will display arts
-    String spinner2_default = "arts";
+    String major = "arts";
 
     //database reference current sets to faculty.
     DatabaseReference faculty = FirebaseDatabase.getInstance().getReference("faculty");
 
     //will create a list of course based on your faculty and year
-    List<course> courseList;// facultyList should be named as courseList
+    List<course> courseList;
 
     /**
      * Add two spinner to get the specific year and majot
@@ -157,27 +157,27 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
 
         //spinner: corresponds to what year you are.
         if(parent.getItemAtPosition(position).toString().equals("Year 1"))
-            spinner1_default = "year1";
+            year = "year1";
         else if(parent.getItemAtPosition(position).toString().equals("Year 2"))
-            spinner1_default = "year2";
+            year = "year2";
         else if(parent.getItemAtPosition(position).toString().equals("Year 3"))
-            spinner1_default = "year3";
+            year = "year3";
         else if(parent.getItemAtPosition(position).toString().equals("Year 4"))
-            spinner1_default = "year4";
+            year = "year4";
         else;//do nothing.
 
         //spinner2: majors.
         if (parent.getItemAtPosition(position).toString().equals("arts"))
-            spinner2_default = "arts";
+            major = "arts";
         else if(parent.getItemAtPosition(position).toString().equals("commerce"))
-            spinner2_default ="commerce";
+            major ="commerce";
         else if (parent.getItemAtPosition(position).toString().equals("computer Science"))
-            spinner2_default ="computerScience";
+            major ="computerScience";
         else if(parent.getItemAtPosition(position).toString().equals("Science"))
-            spinner2_default = "science";
+            major = "science";
         else;
         //based on the desired information , redirect  the Firebase link.
-        faculty = FirebaseDatabase.getInstance().getReference("faculty").child(spinner2_default).child(spinner1_default);
+        faculty = FirebaseDatabase.getInstance().getReference("faculty").child(major).child(year);
         faculty.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

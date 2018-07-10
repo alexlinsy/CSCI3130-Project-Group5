@@ -21,7 +21,7 @@
         <activity android:name=".Login" />
         <activity android:name=".IntermediaryActivity" />
         <activity android:name=".academicTimeTable" />
-        <activity android:name=".courseRecommand" />
+        <activity android:name=".courseRecommend" />
         <activity android:name=".moreInfo" />
         <activity android:name=".TaInfo" />
         <activity android:name=".Year1" />

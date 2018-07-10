@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+
     /**
      * Define the input fields
+     * @param savedInstanceState Create an new activity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +59,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void registerUser(){
         String email = editTextEmail.getText().toString().trim();
         String password= editTextPassword.getText().toString().trim();
+
         //If user does not input email, then tells him to enter email
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
             return;
-            }
+        }
+
         //If user does not input password, then tells him to enter password
             if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
             return;
         }
+
         //If password is satisfied rule, then it will register and store the information in database
         if(validate(password)==true) {
             progressDialog.setMessage("Registering User...");
@@ -80,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 Toast.makeText(MainActivity.this, "Registered Successfully\nNow you can login", Toast.LENGTH_SHORT).show();
                                 progressDialog.cancel();
                             }
+
                             //if the account has already registered, then it cannot register again.
                             else {
                                 Toast.makeText(MainActivity.this, "Registered failed, try again", Toast.LENGTH_SHORT).show();
@@ -93,18 +99,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-
-
-
-
-
     /**
      * This boolean method use for junit test
      * with the specific faculties' button id and level's button id
      * it should show corresponding course
      * @param a is a string of course name
      */
-
     public boolean cTamplate(String a){
         //if it's Computer Science's 1000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B1000){
@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if(a.equals("-Two 1000 Level Free Electives"))
                 return true;
         }
+
         //if it's Computer Science's 2000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B2000){
             if(a.equals("-CSCI 2100.03: Communication Skills: Written and Oral"))
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if(a.equals("-One 1000 Level Free Electives"))
                 return true;
         }
+
         //if it's Computer Science's 3000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B3000){
             if(a.equals("-CSCI 3101.03: Social, Ethical, and Professional Issues in Computer Year2"))
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if(a.equals("-Two 2000 Level Free Electives"))
                 return true;
         }
+
         //if it's Computer Science's 4000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BComputerScience && level.getId() == R.id.B4000){
             if(a.equals("-CSCI 4163.03: Human Computer Interaction"))
@@ -184,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if(a.equals("-MGMT 3603.03: Beyond Google"))
                 return true;
         }
+
         //if it's Art's 1000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BArts && level.getId() == R.id.B1000){
             if(a.equals("-GERM 1010 X: German for Beginners"))
@@ -197,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if(a.equals("-ECON 1102.03: Principles of Macroeconomics"))
                 return true;
         }
+
         //if it's Art's 3000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BArts && level.getId() == R.id.B3000){
             if(a.equals("-GERM 3550: Germany and the Environment"))
@@ -206,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if(a.equals("-THEA 3314: Shakespeare on Film"))
                 return true;
         }
+
         //if it's Science's 1000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BScience && level.getId() == R.id.B1000){
             if(a.equals("-MATH 1000.03: Differential and Integral Calculus I"))
@@ -223,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if(a.equals("-One Humanity Elective"))
                 return true;
         }
+
         //if it's Science's 3000-level course, it will return true when show these courses
         if(courseRecommend.getId()==R.id.BScience && level.getId() == R.id.B3000){
             if(a.equals("-STAT 3340.03: Regression and Analysis of Variance"))

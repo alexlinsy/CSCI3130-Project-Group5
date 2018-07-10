@@ -30,12 +30,16 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
     ListView list;
     TextView textView;
     String Ta="";
+
     //TextView taInfo;
     ArrayList<TA> tas = new ArrayList<TA>();
-    Spinner dropdown_year ;
-    Spinner dropdown_major ;
-    String spinner1_default = "Year 1";//by default, the current table will display Year
-    String spinner2_default = "arts";//and art.
+    Spinner dropdown_year;
+    Spinner dropdown_major;
+    //by default, the current table will display Year
+    String spinner1_default = "Year 1";
+
+    //by default, the current table will display arts
+    String spinner2_default = "arts";
 
     //database reference current sets to faculty.
     DatabaseReference faculty = FirebaseDatabase.getInstance().getReference("faculty");
@@ -56,7 +60,6 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         //detailTa is the TextView object in activity moreInfo.xml
         textView = (TextView)findViewById(R.id.detailTa);
 
-
         //"Year" values in the dropdown button.
         dropdown_year =(Spinner) findViewById(R.id.spinner1);
 
@@ -65,8 +68,6 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         dropdown_year.setAdapter(adapter);
         dropdown_year.setOnItemSelectedListener(this);
-
-
 
         //same as above.
         dropdown_major = findViewById(R.id.spinner2);
@@ -98,15 +99,11 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                     ca.dal.csci3130.coursesmanagementsystem.course fac = courseSnapshot.getValue(ca.dal.csci3130.coursesmanagementsystem.course.class);
                     //each course is a key.
                     fac.setUid(dataSnapshot.getKey());
-                    //ta was set to an object in database.
-                    //uses the Iterable to get the ta information
 
-                    //this part will retrieve all ta object.
+                    //ta was set to an object in database，and uses the Iterable to get the ta information
                     Iterable<DataSnapshot> id = courseSnapshot.child("ta").getChildren();
-                    //tas : should change to TAs.
 
                     // create Ta object key: name of the Ta ;value:Ta emails
-                    //add to Ta ArrayList.
                     while(id.iterator().hasNext()) {
                         DataSnapshot str = id.iterator().next();
                         String s = str.getKey();
@@ -240,6 +237,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         TaInfo.setInfo(course.getTaInfo());
         moreInfo.setCourseInfo(course.getCourseIntro());
         Intent intent = new Intent(this,moreInfo.class);
+
         //JUMP to next UI.
         startActivity(intent);
     }

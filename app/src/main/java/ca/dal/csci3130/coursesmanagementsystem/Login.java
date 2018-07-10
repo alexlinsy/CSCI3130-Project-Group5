@@ -27,6 +27,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button buttonLogin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+
     /**
      *
      * @param savedInstanceState Define the input fields
@@ -50,16 +51,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void loginUser(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+
         //If user does not input email, then tells him to enter email
         if(TextUtils.isEmpty( email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
             return;
         }
+
         //If user does not input password, then tells him to enter password
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
             return;
         }
+
         //if the email and password are entered
         //showing the dialog
         progressDialog.setMessage("Login...");

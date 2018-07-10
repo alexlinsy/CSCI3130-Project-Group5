@@ -30,8 +30,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
     ListView list;//items displayed for based on the current spinner value.
     String Ta="";
 
-    //TextView taInfo;
-    ArrayList<TA> tas = new ArrayList<TA>();
+    ArrayList<TA> tas = new ArrayList<>();
     Spinner dropdown_year;
     Spinner dropdown_major;
     //by default, the current table will display Year

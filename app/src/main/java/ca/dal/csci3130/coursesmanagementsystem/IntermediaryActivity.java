@@ -22,10 +22,6 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intermediary);
-
-        Button timeTable = (Button)findViewById(R.id.coursesButton);
-        Button recommendation = (Button)findViewById(R.id.recommandationButton);
-        Button myCourseButton = (Button) findViewById(R.id.myCoursesButton);
     }
 
     /**

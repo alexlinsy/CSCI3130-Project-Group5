@@ -27,8 +27,7 @@ import java.util.List;
  */
 public class academicTimeTable extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ListView list;
-    TextView textView;
+    ListView list;//items displayed for based on the current spinner value.
     String Ta="";
 
     //TextView taInfo;
@@ -57,8 +56,6 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_time_table);
 
-        //detailTa is the TextView object in activity moreInfo.xml
-        textView = (TextView)findViewById(R.id.detailTa);
 
         //"Year" values in the dropdown button.
         dropdown_year =(Spinner) findViewById(R.id.spinner1);

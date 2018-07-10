@@ -7,6 +7,11 @@ import ca.dal.csci3130.coursesmanagementsystem.MainActivity;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
+/**
+ * This test is used to test for the password validation
+ * The password must include at least one uppercase and lowercase character and digit, and length has to be no longer than 12
+ */
+
 public class TestforValidatePassword {
 
     private MainActivity valid = new MainActivity();

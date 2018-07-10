@@ -9,7 +9,7 @@ import android.widget.ListView;
  */
 public class Year4 extends level {
     /**
-     *
+     *Create an new activity that shows the year4 recommandation course based on the specific major
      * @param savedInstanceState Define the input fields
      */
     @Override

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class TestForIterator {
+    /**
+     * This test is just to test for iterators
+     */
     @Test
     public void iterator(){
         ArrayList<String> arrays = new ArrayList<String>();

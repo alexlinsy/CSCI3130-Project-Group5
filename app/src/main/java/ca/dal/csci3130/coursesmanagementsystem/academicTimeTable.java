@@ -32,8 +32,8 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
     String Ta="";
     //TextView taInfo;
     ArrayList<TA> tas = new ArrayList<TA>();
-    Spinner dropdown ;//will refactor later :
-    Spinner dropdown2 ;//will refactor later :using more meaningful variable name
+    Spinner dropdown_year ;
+    Spinner dropdown_major ;
     String spinner1_default = "Year 1";//by default, the current table will display Year
     String spinner2_default = "arts";//and art.
 
@@ -58,22 +58,22 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
 
 
         //"Year" values in the dropdown button.
-        dropdown =(Spinner) findViewById(R.id.spinner1);
+        dropdown_year =(Spinner) findViewById(R.id.spinner1);
 
         //the following methods will set adapters and activate dropdown event selector listener.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(academicTimeTable.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinner1));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        dropdown.setAdapter(adapter);
-        dropdown.setOnItemSelectedListener(this);
+        dropdown_year.setAdapter(adapter);
+        dropdown_year.setOnItemSelectedListener(this);
 
 
 
         //same as above.
-        dropdown2 = findViewById(R.id.spinner2);
+        dropdown_major = findViewById(R.id.spinner2);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(academicTimeTable.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.spinner2));
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        dropdown2.setAdapter(adapter2);
-        dropdown2.setOnItemSelectedListener(this);
+        dropdown_major.setAdapter(adapter2);
+        dropdown_major.setOnItemSelectedListener(this);
 
         //listView will be used to print course information for each course retrieved.
         list = (ListView)findViewById(R.id.listView);

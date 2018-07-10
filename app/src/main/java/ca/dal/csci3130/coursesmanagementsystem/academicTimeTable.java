@@ -27,21 +27,23 @@ import java.util.List;
  */
 public class academicTimeTable extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ListView list;
-    TextView textView;
+    ListView list;//items displayed for based on the current spinner value.
     String Ta="";
-    //TextView taInfo;
-    ArrayList<TA> tas = new ArrayList<TA>();
-    Spinner dropdown ;//will refactor later :
-    Spinner dropdown2 ;//will refactor later :using more meaningful variable name
-    String spinner1_default = "Year 1";//by default, the current table will display Year
-    String spinner2_default = "arts";//and art.
+
+    ArrayList<TA> tas = new ArrayList<>();
+    Spinner dropdown_year;
+    Spinner dropdown_major;
+    //by default, the current table will display Year
+    String year = "Year 1";
+
+    //by default, the current table will display arts
+    String major = "arts";
 
     //database reference current sets to faculty.
     DatabaseReference faculty = FirebaseDatabase.getInstance().getReference("faculty");
 
     //will create a list of course based on your faculty and year
-    List<course> courseList;// facultyList should be named as courseList
+    List<course> courseList;
 
     /**
      * Add two spinner to get the specific year and majot
@@ -53,27 +55,22 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_time_table);
 
-        //detailTa is the TextView object in activity moreInfo.xml
-        textView = (TextView)findViewById(R.id.detailTa);
-
 
         //"Year" values in the dropdown button.
-        dropdown =(Spinner) findViewById(R.id.spinner1);
+        dropdown_year =(Spinner) findViewById(R.id.spinner1);
 
         //the following methods will set adapters and activate dropdown event selector listener.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(academicTimeTable.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spinner1));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        dropdown.setAdapter(adapter);
-        dropdown.setOnItemSelectedListener(this);
-
-
+        dropdown_year.setAdapter(adapter);
+        dropdown_year.setOnItemSelectedListener(this);
 
         //same as above.
-        dropdown2 = findViewById(R.id.spinner2);
+        dropdown_major = findViewById(R.id.spinner2);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(academicTimeTable.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.spinner2));
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        dropdown2.setAdapter(adapter2);
-        dropdown2.setOnItemSelectedListener(this);
+        dropdown_major.setAdapter(adapter2);
+        dropdown_major.setOnItemSelectedListener(this);
 
         //listView will be used to print course information for each course retrieved.
         list = (ListView)findViewById(R.id.listView);
@@ -98,15 +95,11 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
                     ca.dal.csci3130.coursesmanagementsystem.course fac = courseSnapshot.getValue(ca.dal.csci3130.coursesmanagementsystem.course.class);
                     //each course is a key.
                     fac.setUid(dataSnapshot.getKey());
-                    //ta was set to an object in database.
-                    //uses the Iterable to get the ta information
 
-                    //this part will retrieve all ta object.
+                    //ta was set to an object in database，and uses the Iterable to get the ta information
                     Iterable<DataSnapshot> id = courseSnapshot.child("ta").getChildren();
-                    //tas : should change to TAs.
 
                     // create Ta object key: name of the Ta ;value:Ta emails
-                    //add to Ta ArrayList.
                     while(id.iterator().hasNext()) {
                         DataSnapshot str = id.iterator().next();
                         String s = str.getKey();
@@ -160,27 +153,27 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
 
         //spinner: corresponds to what year you are.
         if(parent.getItemAtPosition(position).toString().equals("Year 1"))
-            spinner1_default = "year1";
+            year = "year1";
         else if(parent.getItemAtPosition(position).toString().equals("Year 2"))
-            spinner1_default = "year2";
+            year = "year2";
         else if(parent.getItemAtPosition(position).toString().equals("Year 3"))
-            spinner1_default = "year3";
+            year = "year3";
         else if(parent.getItemAtPosition(position).toString().equals("Year 4"))
-            spinner1_default = "year4";
+            year = "year4";
         else;//do nothing.
 
         //spinner2: majors.
         if (parent.getItemAtPosition(position).toString().equals("arts"))
-            spinner2_default = "arts";
+            major = "arts";
         else if(parent.getItemAtPosition(position).toString().equals("commerce"))
-            spinner2_default ="commerce";
+            major ="commerce";
         else if (parent.getItemAtPosition(position).toString().equals("computer Science"))
-            spinner2_default ="computerScience";
+            major ="computerScience";
         else if(parent.getItemAtPosition(position).toString().equals("Science"))
-            spinner2_default = "science";
+            major = "science";
         else;
         //based on the desired information , redirect  the Firebase link.
-        faculty = FirebaseDatabase.getInstance().getReference("faculty").child(spinner2_default).child(spinner1_default);
+        faculty = FirebaseDatabase.getInstance().getReference("faculty").child(major).child(year);
         faculty.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -244,6 +237,7 @@ public class academicTimeTable extends AppCompatActivity implements AdapterView.
         TaInfo.setInfo(course.getTaInfo());
         moreInfo.setCourseInfo(course.getCourseIntro());
         Intent intent = new Intent(this,moreInfo.class);
+
         //JUMP to next UI.
         startActivity(intent); */
         Intent intent = new Intent(academicTimeTable.this, CourseRegisterActivity.class);

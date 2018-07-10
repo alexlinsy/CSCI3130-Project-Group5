@@ -22,10 +22,6 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intermediary);
-
-        Button timeTable = (Button)findViewById(R.id.coursesButton);
-        Button recommendation = (Button)findViewById(R.id.recommandationButton);
-        Button myCourseButton = (Button) findViewById(R.id.myCoursesButton);
     }
 
     /**
@@ -40,8 +36,13 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
                 startActivity(timeTable);
                 break;
             case R.id.recommandationButton:
-                Intent courseRecommand = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.courseRecommand.class);
+                Intent courseRecommand = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.courseRecommend.class);
                 startActivity(courseRecommand);
+                break;
+
+            case R.id.myCoursesButton:
+                Intent myCourse = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.myCourse.class);
+                startActivity(myCourse);
                 break;
         }
     }

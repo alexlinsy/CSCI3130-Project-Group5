@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/drawer"
     android:layout_height="match_parent"
     tools:context=".myCourse">
     <LinearLayout
@@ -16,7 +17,7 @@
         android:layout_marginEnd="78dp"
         android:layout_marginStart="73dp"
         android:layout_marginTop="165dp"
-        android:text="TextView"
+        android:text="Welcome to MyCourse!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,8 @@
     <android.support.design.widget.NavigationView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:id="@+id/navigation_view"
+        app:menu="@menu/navigation_menu"
         android:layout_gravity="start">
 
 

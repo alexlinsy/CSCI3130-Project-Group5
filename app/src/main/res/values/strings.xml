@@ -15,6 +15,8 @@
         <item>Science</item>
     </string-array>
     <string name="textview">textView</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 
     <string name="course_number">Course Number</string>
     <string name="professor_name">Professor Name</string>

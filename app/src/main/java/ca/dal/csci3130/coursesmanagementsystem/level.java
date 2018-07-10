@@ -7,7 +7,7 @@ import android.view.View;
  * show the course template for 4 levels: 1000+, 2000+, 3000+, 4000+
  * and design in the form of buttons
  */
-public class level extends courseRecommend {
+public class level extends courseRecommend{
 
     /**
      * @param id is used for which recognize 4 different levels

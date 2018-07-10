@@ -60,7 +60,7 @@ public class TestForCourseTemplate {
     public void test7(){
         courseRecommend.setId(R.id.BScience );
         level.setId(R.id.B1000);
-        assertFalse(template.cTamplate("-GERM 3550: Germany and the Environment"));
+        assertFalse(template.cTamplate("-CSCI 2100.03: Communication Skills: Written and Oral"));
     }
     @Test
     public void test8(){

@@ -1,5 +1,6 @@
 package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +39,8 @@ public class CourseRegisterActivity extends AppCompatActivity {
     public String major = "";
     private String courseId = "";
     private Long seats;
+    private int duration =  Toast.LENGTH_SHORT;
+    private CharSequence text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +172,33 @@ public class CourseRegisterActivity extends AppCompatActivity {
                     }
                 });
                 userRef.child("Courses").child(courseId).removeValue();
+
+                userRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child("Courses").exists()) {
+                            Context context = getApplicationContext();
+                            text = "Your course is not successful dropped";
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        } else {
+
+                            Context context = getApplicationContext();
+                            text = "Your course is successful dropped!";
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+
+                            Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
+                            intent.putExtra("COURSE_ID", courseId);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 

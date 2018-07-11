@@ -32,6 +32,7 @@ public class UserActivity extends AppCompatActivity {
     public String courseID = "";
     public String study_year = "";
     public String major = "";
+    public String courseRegisterID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,10 @@ public class UserActivity extends AppCompatActivity {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference accountRef = database.getReference("User").child(currentUser.getUid()).child("Courses");
 
-        final String courseRegisterID = getIntent().getExtras().getString("COURSE_ID");
+
+        courseRegisterID = getIntent().getExtras().getString("COURSE_ID");
+
+
 
         final ArrayList<String> arrayList = new ArrayList<String>();
 

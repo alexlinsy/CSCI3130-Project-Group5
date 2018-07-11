@@ -87,6 +87,7 @@ public class MyCourseActivity extends AppCompatActivity implements NavigationVie
         if (id == R.id.my_grade) {
             Toast.makeText(this, "This is my grade", Toast.LENGTH_SHORT).show();
         }
+
         return false;
     }
 

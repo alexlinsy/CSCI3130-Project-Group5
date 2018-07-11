@@ -177,6 +177,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child("Courses").exists()) {
+                            //Show toast message if the drop function is failed
                             Context context = getApplicationContext();
                             text = "Your course is not successful dropped";
                             Toast toast = Toast.makeText(context, text, duration);

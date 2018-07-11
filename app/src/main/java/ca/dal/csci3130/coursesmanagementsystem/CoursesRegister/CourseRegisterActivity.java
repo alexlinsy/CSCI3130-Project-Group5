@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -168,6 +169,8 @@ public class CourseRegisterActivity extends AppCompatActivity {
                     }
                 });
                 userRef.child("Courses").child(courseId).removeValue();
+                Toast.makeText(CourseRegisterActivity.this, "Drop course successfully!", Toast.LENGTH_SHORT).show();
+
             }
         });
 

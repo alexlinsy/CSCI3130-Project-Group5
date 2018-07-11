@@ -7,6 +7,7 @@ import android.view.View;
 
 import ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.AcademicTimeTableActivity;
 import ca.dal.csci3130.coursesmanagementsystem.CourseRecommandation.CourseRecommendActivity;
+import ca.dal.csci3130.coursesmanagementsystem.MyCourses.MyCourseActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
 /**
@@ -44,7 +45,7 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.myCoursesButton:
-                Intent myCourse = new Intent(this, ca.dal.csci3130.coursesmanagementsystem.MyCourses.myCourse.class);
+                Intent myCourse = new Intent(this, MyCourseActivity.class);
                 startActivity(myCourse);
                 break;
         }

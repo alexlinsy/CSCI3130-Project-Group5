@@ -18,7 +18,7 @@ import ca.dal.csci3130.coursesmanagementsystem.R;
  * This class is defined by showing a navigation view, and it including some functions
  * In iteration 2, we just focus on building the logout function
  */
-public class myCourse extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MyCourseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawLayout;
     private ActionBarDrawerToggle mToggle;
     private TextView myInfo;

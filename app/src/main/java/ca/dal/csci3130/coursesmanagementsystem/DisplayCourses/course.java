@@ -9,16 +9,18 @@ public class course {
     private String courseIntro;
     private String courseName;
     private String professor;
+    private String professorEmail;
     private String taInfo;
     private String uid;
     private int seat;
 
     public course(){ };
-    public course(String courseIntro,String courseName,String professor,int seat){
+    public course(String courseIntro,String courseName,String professor,String professorEmail,int seat){
         this.courseName = courseName;
         this.courseIntro = courseIntro;
         this.professor = professor;
         this.seat = seat;
+        this.professorEmail = professorEmail;
     }
 
     public int getSeat() {
@@ -72,5 +74,13 @@ public class course {
 
     public void setCourseIntro(String courseIntro) {
         this.courseIntro = courseIntro;
+    }
+
+    public String getProfessorEmail() {
+        return professorEmail;
+    }
+
+    public void setProfessorEmail(String professorEmail) {
+        this.professorEmail = professorEmail;
     }
 }

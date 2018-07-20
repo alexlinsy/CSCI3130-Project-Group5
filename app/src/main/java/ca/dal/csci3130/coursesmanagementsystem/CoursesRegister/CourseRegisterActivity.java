@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +26,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.AcademicTimeTableActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
 public class CourseRegisterActivity extends AppCompatActivity {
@@ -40,7 +38,6 @@ public class CourseRegisterActivity extends AppCompatActivity {
     public String study_year = "";
     public String major = "";
     private String courseId = "";
-    private String courseTime = "";
     private Long seats;
     private int duration =  Toast.LENGTH_SHORT;
     private CharSequence text;
@@ -100,7 +97,6 @@ public class CourseRegisterActivity extends AppCompatActivity {
                 TextView courseName = (TextView)findViewById(R.id.courseDisplay);
                 courseName.setText(courseInfomation.getCourseName());
                 userCoursesName = courseInfomation.getCourseName();
-                courseTime = courseInfomation.getTime();
 
                 TextView courseProfessor = (TextView)findViewById(R.id.professorName);
                 courseProfessor.setText(courseInfomation.getProfessor());
@@ -128,7 +124,6 @@ public class CourseRegisterActivity extends AppCompatActivity {
                 user.setCourseID(courseID);
                 user.setCourseYear(study_year);
                 user.setCourseMajor(major);
-                user.setCourseTime(courseTime);
                 courseId = userRef.push().getKey();
                 userRef.child("Courses").child(courseId).setValue(user);
                 Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
@@ -208,41 +203,6 @@ public class CourseRegisterActivity extends AppCompatActivity {
             }
         });
 
-        initToolbar();
-
-    }
-
-    /**
-     * Method for Going back to the courses list page when the back button on navigation bar is pressed.
-     */
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, AcademicTimeTableActivity.class);
-        startActivity(intent);
-        super.onBackPressed();
-    }
-
-    /**
-     * Initial the navigation tool bar on top
-     */
-    private void initToolbar(){
-        getSupportActionBar().setTitle("Courses Management System");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    /**
-     * Add the back option on top navigation bar
-     * @param item back option item
-     * @return item value, go back to previous page
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
-            case android.R.id.home:{
-                onBackPressed();
-            }
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     /**

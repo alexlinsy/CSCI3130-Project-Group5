@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import ca.dal.csci3130.coursesmanagementsystem.MainActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
@@ -39,14 +40,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-     firebaseAuth=FirebaseAuth.getInstance();
-     editTextEmail= (EditText) findViewById(R.id.editTextEmail);
-     editTextPassword= (EditText) findViewById(R.id.editTextPassword);
-     buttonLogin = (Button) findViewById(R.id.buttonLogin);
-     textViewSignup = (TextView) findViewById(R.id.textViewSignup);
-     progressDialog = new ProgressDialog(this);
-     buttonLogin.setOnClickListener(this);
-     textViewSignup.setOnClickListener(this);
+        firebaseAuth=FirebaseAuth.getInstance();
+        editTextEmail= (EditText) findViewById(R.id.editTextEmail);
+        editTextPassword= (EditText) findViewById(R.id.editTextPassword);
+        buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        textViewSignup = (TextView) findViewById(R.id.textViewSignup);
+        progressDialog = new ProgressDialog(this);
+        buttonLogin.setOnClickListener(this);
+        textViewSignup.setOnClickListener(this);
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user != null) {
+            Intent intent = new Intent(this, IntermediaryActivity.class);
+            startActivity(intent);
+        }
     }
     /**
      * The method that let user to login their account.
@@ -100,5 +107,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         finish();
         startActivity(new Intent(this, MainActivity.class));
         }
+    }
+
+    /**
+     * Method for Going back to the courses list page when the back button on navigation bar is pressed.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

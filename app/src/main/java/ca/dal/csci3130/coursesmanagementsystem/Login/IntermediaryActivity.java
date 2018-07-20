@@ -8,6 +8,7 @@ import android.view.View;
 import ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.AcademicTimeTableActivity;
 import ca.dal.csci3130.coursesmanagementsystem.CourseRecommandation.CourseRecommendActivity;
 import ca.dal.csci3130.coursesmanagementsystem.MyCourses.MyCourseActivity;
+import ca.dal.csci3130.coursesmanagementsystem.MyCourses.MyCourseActivity_1;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
 /**
@@ -47,6 +48,10 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
             case R.id.myCoursesButton:
                 Intent myCourse = new Intent(this, MyCourseActivity.class);
                 startActivity(myCourse);
+                break;
+            case R.id.myCourse1:
+                Intent myCourse1 = new Intent(this, MyCourseActivity_1.class);
+                startActivity(myCourse1);
                 break;
         }
     }

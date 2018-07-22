@@ -46,11 +46,6 @@ public class UserActivity extends AppCompatActivity {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference accountRef = database.getReference("User").child(currentUser.getUid()).child("Courses");
 
-
-        //courseRegisterID = getIntent().getExtras().getString("COURSE_ID");
-
-
-
         final ArrayList<userCourses> arrayList = new ArrayList<userCourses>();
 
         //Show courses' names

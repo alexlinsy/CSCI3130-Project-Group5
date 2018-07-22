@@ -74,6 +74,8 @@ public class CourseRegisterActivity extends AppCompatActivity {
             courseID = intent.getExtras().getString("EXTRA_COURSEID2");
             study_year = intent.getExtras().getString("EXTRA_YEAR2");
             major = intent.getExtras().getString("EXTRA_MAJOR2");
+            courseId = intent.getExtras().getString("EXTRA_userCourseID");
+
         } else {
             dropButton.setVisibility(View.GONE);
         }
@@ -124,12 +126,14 @@ public class CourseRegisterActivity extends AppCompatActivity {
                 buttonEffect(registerButton);
                 //Change to the user page.
                 userCourses user = new userCourses();
+                //Set up user's course property value
                 user.setUserCourseName(userCoursesName);
                 user.setCourseID(courseID);
                 user.setCourseYear(study_year);
                 user.setCourseMajor(major);
                 user.setCourseTime(courseTime);
                 courseId = userRef.push().getKey();
+                user.setUserCourseID(courseId);
                 userRef.child("Courses").child(courseId).setValue(user);
                 Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
                 intent.putExtra("COURSE_ID", courseId);
@@ -181,7 +185,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
                 userRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child("Courses").exists()) {
+                        if(dataSnapshot.child("Courses").child(courseId).exists()) {
                             //Show toast message if the drop function is failed
                             Context context = getApplicationContext();
                             text = "Your course is not successful dropped";
@@ -195,7 +199,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
                             toast.show();
 
                             Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
-                            intent.putExtra("COURSE_ID", courseId);
+                            //intent.putExtra("COURSE_ID", courseId);
                             startActivity(intent);
                         }
                     }

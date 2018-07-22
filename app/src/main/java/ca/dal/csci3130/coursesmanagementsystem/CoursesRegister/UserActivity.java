@@ -2,7 +2,6 @@ package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -48,22 +47,24 @@ public class UserActivity extends AppCompatActivity {
         final DatabaseReference accountRef = database.getReference("User").child(currentUser.getUid()).child("Courses");
 
 
-        courseRegisterID = getIntent().getExtras().getString("COURSE_ID");
+        //courseRegisterID = getIntent().getExtras().getString("COURSE_ID");
 
 
 
-        final ArrayList<String> arrayList = new ArrayList<String>();
+        final ArrayList<userCourses> arrayList = new ArrayList<userCourses>();
 
         //Show courses' names
         accountRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                //userCourses studentCourses = dataSnapshot.getValue(userCourses.class);
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String courses = ds.child("userCourseName").getValue().toString();
-                    arrayList.add(courses);
+                    //String courses = ds.child("userCourseName").getValue().toString();
+                    userCourses studentCourses = ds.getValue(userCourses.class);
+                    arrayList.add(studentCourses);
                 }
-                ListAdapter arrayAdapter = new ArrayAdapter<String>(UserActivity.this, android.R.layout.simple_list_item_1, arrayList);
+                ListAdapter arrayAdapter = new ArrayAdapter<userCourses>(UserActivity.this, android.R.layout.simple_list_item_1, arrayList);
+
                 coursesView.setAdapter(arrayAdapter);
 
             }
@@ -75,39 +76,21 @@ public class UserActivity extends AppCompatActivity {
             }
 
         });
-            //Set the value of course register page
-            accountRef.child(courseRegisterID).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    userCourses myCourses = dataSnapshot.getValue(userCourses.class);
-
-                    if(dataSnapshot.hasChild("courseID")) {
-                        courseID = myCourses.getCourseID();
-                    }
-                    if(dataSnapshot.hasChild("courseMajor")) {
-                        major = myCourses.getCourseMajor();
-                    }
-                    if(dataSnapshot.hasChild("courseYear")) {
-                        study_year = myCourses.getCourseYear();
-                    }
-
-                }
-
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-
 
         coursesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                jumpActivity(courseID, study_year, major);
+                userCourses currentCourses = arrayList.get(position);
+                //Set the value of course register page
+                courseID = currentCourses.getCourseID();
+                major = currentCourses.getCourseMajor();
+                study_year = currentCourses.getCourseYear();
+                courseRegisterID = currentCourses.getUserCourseID();
+
+                jumpActivity(courseID, study_year, major, courseRegisterID);
             }
         });
+
 
 
         backToMain.setOnClickListener(new Button.OnClickListener() {
@@ -125,7 +108,7 @@ public class UserActivity extends AppCompatActivity {
      * @param study_year the year of major
      * @param major the major of the user
      */
-    public void jumpActivity(String courseID, String study_year, String major) {
+    public void jumpActivity(String courseID, String study_year, String major, String courseRegisterID) {
         Intent intent = new Intent(UserActivity.this, CourseRegisterActivity.class);
 
         String message = "showButton";
@@ -135,6 +118,7 @@ public class UserActivity extends AppCompatActivity {
         extras.putString("EXTRA_YEAR2", study_year);
         extras.putString("EXTRA_MAJOR2", major);
         extras.putString("EXTRA_MESSAGE", message);
+        extras.putString("EXTRA_userCourseID", courseRegisterID);
         intent.putExtras(extras);
 
         startActivity(intent);

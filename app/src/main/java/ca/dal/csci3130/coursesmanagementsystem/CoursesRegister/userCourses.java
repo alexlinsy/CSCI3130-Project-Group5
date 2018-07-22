@@ -9,6 +9,7 @@ public class userCourses {
     private String courseYear;
     private String courseMajor;
     private String courseTime;
+    private String userCourseID;
 
     public userCourses() {
 
@@ -29,6 +30,9 @@ public class userCourses {
     public void setCourseTime(String courseTime) {
         this.courseTime = courseTime;
     }
+    public void setUserCourseID (String userCourseID) {
+        this.userCourseID = userCourseID;
+    }
 
     /**
      *
@@ -37,6 +41,7 @@ public class userCourses {
      * @return String courseYear
      * @return String courseMajor
      * @return String courseTime
+     * @return Stirng userCourseID
      */
     public String getUserCourseName() {
         return userCourseName;
@@ -53,12 +58,19 @@ public class userCourses {
     public String getCourseTime() {
         return courseTime;
     }
+    public String getUserCourseID() {
+        return userCourseID;
+    }
+    public String toString() {
+        return userCourseName;
+    }
 
     /**
      * @param userCourseName course Name of the added course
      * @param courseID the ID of the course
      * @param courseYear the year of the course
      * @param courseMajor the major of the course
+     * @param userCourseID the user course id
      */
 
 }

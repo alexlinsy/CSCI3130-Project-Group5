@@ -1,5 +1,6 @@
 package ca.dal.csci3130.coursesmanagementsystem.pureJava;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class registeredCourse {
@@ -11,6 +12,11 @@ public class registeredCourse {
     private String endTime;
     private char[] avaliableTime;
     private static  ArrayList<registeredCourse> registeredCourses = new ArrayList<>();
+    private static ArrayList<registeredCourse>Monday = new ArrayList<>();
+    private static ArrayList<registeredCourse>Tuesday = new ArrayList<>();
+    private static ArrayList<registeredCourse>Wednesday = new ArrayList<>();
+    private static ArrayList<registeredCourse>Thursday = new ArrayList<>();
+    private static ArrayList<registeredCourse>Friday = new ArrayList<>();
 
     public registeredCourse(){
     }
@@ -123,4 +129,60 @@ public class registeredCourse {
             getList().set(j+1,reg);
         }
     }
-}
+
+    public static ArrayList<registeredCourse>getMonday(){
+        return Monday;
+    }
+    public static ArrayList<registeredCourse>getTuesday(){
+        return Tuesday;
+    }
+    public static ArrayList<registeredCourse>getWednesday(){
+        return Wednesday;
+    }
+    public static ArrayList<registeredCourse>getThursday(){
+        return Thursday;
+    }
+    public static ArrayList<registeredCourse>getFriday(){
+        return Friday;
+    }
+
+    public static void insertionSort(ArrayList<registeredCourse>courses){
+        int i, j;
+        registeredCourse reg;
+        for(i = 1 ; i<courses.size();i++){
+            reg = courses.get(i);
+            int startTimeOnReg = Integer.parseInt(courses.get(i).getStartTime());
+            j = i - 1;
+
+            while(j >= 0 &&Integer.parseInt(courses.get(j).getStartTime()) >startTimeOnReg ){
+                courses.set(j+1, courses.get(j));
+                j = j -1;
+            }
+           courses.set(j+1,reg);
+        }
+    }
+
+
+    public void addBasedOnAvailableTime(){
+
+        for(int i =0; i<getAvaliableTime().length;i++){
+            if(getAvaliableTime()[i]=='M') {
+                getMonday().add(this);
+            }
+            else if(getAvaliableTime()[i]=='T'){
+                getTuesday().add(this);
+            }
+            else if(getAvaliableTime()[i]=='W'){
+                getWednesday().add(this);
+            }
+            else if(getAvaliableTime()[i]=='R'){
+                getThursday().add(this);
+            }else if(getAvaliableTime()[i]=='F'){
+                getFriday().add(this);
+            }
+
+            }
+        }
+    }
+
+

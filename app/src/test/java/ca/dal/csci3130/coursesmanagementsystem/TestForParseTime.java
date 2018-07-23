@@ -35,8 +35,8 @@ public class TestForParseTime {
     @Test
     public void onAddDays(){
         addDays();
-        assertEquals('M',avilable.toArray()[1]);
-        assertEquals('W',avilable.toArray()[2]);
+        assertEquals('M',avilable.toArray()[0]);
+        assertEquals('W',avilable.toArray()[1]);
         assertEquals('F',avilable.toArray()[2]);
     }
     public void addDays(){
@@ -50,7 +50,7 @@ public class TestForParseTime {
     @Test
     public void TestOnArray(){
         assertEquals("0935-1025",split[0]);
-        assertEquals("MWF",split[1]);
+        assertEquals("MWF)",split[1]);
     }
     @Test
     public void TestOnSecondSplit(){
@@ -65,7 +65,7 @@ public class TestForParseTime {
         String days = delimter[1].toString();
         assertEquals("MWF)",delimter[1].toString());
         String []deleteRight = delimteRightBracket(days);
-        assertEquals("WF",deleteRight[0]);
+        assertEquals("MWF",deleteRight[0]);
     }
 
     @Test

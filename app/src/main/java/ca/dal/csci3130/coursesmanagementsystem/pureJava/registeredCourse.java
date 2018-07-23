@@ -1,9 +1,11 @@
 package ca.dal.csci3130.coursesmanagementsystem.pureJava;
 
-import java.lang.reflect.Array;
+import android.support.v4.app.SupportActivity;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class registeredCourse {
+public class registeredCourse implements Serializable{
     private String courseID;
     private String courseMajor;
     private String courseTime;
@@ -130,7 +132,7 @@ public class registeredCourse {
         }
     }
 
-    public static ArrayList<registeredCourse>getMonday(){
+    public static ArrayList<registeredCourse> getMonday(){
         return Monday;
     }
     public static ArrayList<registeredCourse>getTuesday(){

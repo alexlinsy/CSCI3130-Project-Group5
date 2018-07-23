@@ -1,7 +1,10 @@
 package ca.dal.csci3130.coursesmanagementsystem.MyCourses;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,21 +19,34 @@ import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 import ca.dal.csci3130.coursesmanagementsystem.R;
-
-
+import ca.dal.csci3130.coursesmanagementsystem.pureJava.registeredCourse;
 
 
 public class WeekActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listView;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference myRef = database.getReference("User").child(currentFirebaseUser.getUid()).child("Courses");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week);
         setupUIView();
-
+        database();
         setupListView();
+
     }
 
     private void setupUIView(){
@@ -38,7 +54,32 @@ public class WeekActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.lvWeek);
     }
 
+    public void database(){
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+                    registeredCourse reg = dataSnapshot1.getValue(registeredCourse.class);
+                    reg.parseTime();
+                    reg.addBasedOnAvailableTime();
+                }
+                ArrayList<registeredCourse> courses= registeredCourse.getWednesday();
+                String s ="";
+                registeredCourse.insertionSort(registeredCourse.getMonday());
+                registeredCourse.insertionSort(registeredCourse.getTuesday());
+                registeredCourse.insertionSort(registeredCourse.getWednesday());
+                registeredCourse.insertionSort(registeredCourse.getThursday());
+                registeredCourse.insertionSort(registeredCourse.getFriday());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void setupListView(){
         String[]week = getResources().getStringArray(R.array.Week);
@@ -46,14 +87,47 @@ public class WeekActivity extends AppCompatActivity {
         SimpleAdatper simpleAdatper = new SimpleAdatper(this, week);
         listView.setAdapter(simpleAdatper);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0:break;
-                    case 1:break;
-                    case 2:break;
-                    case 3:break;
-                    case 4:break;
+                    case 0:
+                        Intent intent = new Intent(WeekActivity.this,dailyActivity.class);
+                        ArrayList<registeredCourse> arr = registeredCourse.getMonday();
+                        intent.setAction("action");
+                        intent.putExtra("sche",arr);
+                        String day = "Monday";
+                        //intent.putExtra()
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(WeekActivity.this,dailyActivity.class);
+                        ArrayList<registeredCourse> arr1 = registeredCourse.getTuesday();
+                        intent1.setAction("action");
+                        intent1.putExtra("sche",arr1);
+                        startActivity(intent1);
+                        break;
+                    case 2:
+                        Intent intent2 = new Intent(WeekActivity.this,dailyActivity.class);
+                        ArrayList<registeredCourse> arr2 = registeredCourse.getWednesday();
+                        intent2.setAction("action");
+                        intent2.putExtra("sche",arr2);
+                        startActivity(intent2);
+                        break;
+                    case 3:
+                        Intent intent3 = new Intent(WeekActivity.this,dailyActivity.class);
+                        ArrayList<registeredCourse> arr3 = registeredCourse.getThursday();
+                        intent3.setAction("action");
+                        intent3.putExtra("sche",arr3);
+                        startActivity(intent3);
+                        break;
+                    case 4:
+                        Intent intent4 = new Intent(WeekActivity.this,dailyActivity.class);
+                        ArrayList<registeredCourse> arr4 = registeredCourse.getFriday();
+                        intent4.setAction("action");
+                        intent4.putExtra("sche",arr4);
+                        startActivity(intent4);
+                        break;
                     case 5:break;
                     case 6:break;
                     default:break;

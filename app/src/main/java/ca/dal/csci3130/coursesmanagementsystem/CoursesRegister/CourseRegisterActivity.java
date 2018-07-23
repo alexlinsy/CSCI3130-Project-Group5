@@ -290,6 +290,10 @@ public class CourseRegisterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Method for registering user's courses
+     * @param user the userCourses object
+     */
     public void registerCourse (userCourses user) {
         user.setUserCourseName(userCoursesName);
         user.setCourseID(courseID);

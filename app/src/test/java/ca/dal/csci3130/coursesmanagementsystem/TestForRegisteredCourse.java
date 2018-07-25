@@ -13,6 +13,7 @@ public class TestForRegisteredCourse {
     registeredCourse registeredCourse4 = new registeredCourse("CSCI2141","CS","1335-1425(MWF)","year2");
     registeredCourse registeredCourse2 = new registeredCourse("CSCI2100","CS","1035-1125(MWF)","year2");
     registeredCourse registeredCourse3 = new registeredCourse("CSCI2132","CS","1235-1325(MWF)","year2");
+    registeredCourse registeredCourse5 = new registeredCourse("CSCI3130", "CS","1005-1135(MWF)","Year3");
     @Test
     public void getTime(){
         registeredCourse1.parseTime();
@@ -74,6 +75,15 @@ public class TestForRegisteredCourse {
         registeredCourse.addToList(registeredCourse1);
         registeredCourse.addToList(registeredCourse3);
 
+    }
+
+    @Test
+    public void timeConflict() {
+        registeredCourse1.parseTime();
+        registeredCourse5.parseTime();
+        registeredCourse1.addBasedOnAvailableTime();
+        registeredCourse5.addBasedOnAvailableTime();
+        assertEquals(true,registeredCourse1.timeConflit());
     }
 
 

@@ -33,7 +33,7 @@ public class courseInfo {
     public void setTime(String time){
         this.time = time;
     }
-    public void setProfessorEmail(String professorEmail) { this.professorEmail = professorEmail; }
+    public void setProfessorEmail(String professorEmail) { this.professorEmail = professorEmail;  }
 
     /**
      * @return the detail of course info

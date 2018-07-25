@@ -8,6 +8,7 @@ public class courseInfo {
     private String courseName;
     private String location;
     private String professor;
+    private String professorEmail;
     private String time;
     private String imageUrl;
 
@@ -32,6 +33,11 @@ public class courseInfo {
     public void setTime(String time){
         this.time = time;
     }
+    public void setProfessorEmail(String professorEmail) { this.professorEmail = professorEmail; }
+
+
+
+
 
     /**
      * @return the detail of course info
@@ -58,6 +64,7 @@ public class courseInfo {
     public String getImageUrl() {
         return imageUrl;
     }
+    public String getProfessorEmail() { return professorEmail; }
 
     /**
      * @param courseInfo the course introduction

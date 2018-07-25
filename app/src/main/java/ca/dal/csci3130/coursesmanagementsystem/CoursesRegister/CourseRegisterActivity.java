@@ -92,7 +92,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
                     taList.add(ds.getValue().toString());
                 }
 
-                String courseIntroduction = "Course Schedual: " + courseInfomation.getTime() + "\n\n" + courseInfomation.getCourseIntro() + "\n\n" + "TA: " + taList.toString();
+                String courseIntroduction = "Course Schedual: " + courseInfomation.getTime() + "\n\n" + courseInfomation.getCourseIntro() + "\n\n" + "TA: " + taList.toString() + "\n\n" + courseInfomation.getProfessorEmail();
                 coursesIntro.setText(courseIntroduction);
                 TextView courseName = (TextView)findViewById(R.id.courseDisplay);
                 courseName.setText(courseInfomation.getCourseName());

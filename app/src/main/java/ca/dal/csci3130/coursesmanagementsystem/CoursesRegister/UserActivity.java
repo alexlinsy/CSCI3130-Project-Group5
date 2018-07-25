@@ -1,5 +1,7 @@
 package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +34,8 @@ public class UserActivity extends AppCompatActivity {
     public String study_year = "";
     public String major = "";
     public String courseRegisterID = "";
+    public String courseTime = "";
+    public registeredCourse currentCourses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +52,47 @@ public class UserActivity extends AppCompatActivity {
 
         final ArrayList<userCourses> arrayList = new ArrayList<userCourses>();
 
+        //Create Alert Dialog box
+        final AlertDialog.Builder Alertbuilder = new AlertDialog.Builder(this);
+        Alertbuilder.setCancelable(true);
+
+        Alertbuilder.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+
         //Show courses' names
         accountRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //userCourses studentCourses = dataSnapshot.getValue(userCourses.class);
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     //String courses = ds.child("userCourseName").getValue().toString();
+                    courseID = ds.child("courseID").getValue().toString();
+                    major = ds.child("courseMajor").getValue().toString();
+                    courseTime = ds.child("courseTime").getValue().toString();
+                    study_year = ds.child("courseYear").getValue().toString();
+                    //Create userCourses Object to add courses to listView
                     userCourses studentCourses = ds.getValue(userCourses.class);
+                    //Create courseRegister Object to check the time conflict
+                    currentCourses = new registeredCourse(courseID, major, courseTime, study_year);
+
+                    currentCourses.parseTime();
+                    currentCourses.addBasedOnAvailableTime();
                     arrayList.add(studentCourses);
                 }
                 ListAdapter arrayAdapter = new ArrayAdapter<userCourses>(UserActivity.this, android.R.layout.simple_list_item_1, arrayList);
 
                 coursesView.setAdapter(arrayAdapter);
+
+                if(currentCourses.timeConflit()) {
+                    Alertbuilder.setMessage("Your register courses have time conflict, please check the academic time table ");
+                    AlertDialog alertBox = Alertbuilder.create();
+                    alertBox.show();
+                }
 
             }
 

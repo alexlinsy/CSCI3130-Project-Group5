@@ -43,6 +43,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
     public String major = "";
     private String courseId = "";
     private String courseTime = "";
+    private String userCourseId = "";
     private Long seats;
     private int duration =  Toast.LENGTH_SHORT;
     private CharSequence text;
@@ -94,7 +95,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
             courseID = intent.getExtras().getString("EXTRA_COURSEID2");
             study_year = intent.getExtras().getString("EXTRA_YEAR2");
             major = intent.getExtras().getString("EXTRA_MAJOR2");
-            courseId = intent.getExtras().getString("EXTRA_userCourseID");
+            userCourseId = intent.getExtras().getString("EXTRA_userCourseID");
 
         } else {
             dropButton.setVisibility(View.GONE);
@@ -204,6 +205,8 @@ public class CourseRegisterActivity extends AppCompatActivity {
             public  void onClick(View v) {
                 buttonEffect(dropButton);
 
+                userRef.child("Courses").child(userCourseId).removeValue();
+
                 //When a course is dropped, avaliable seat increase by one
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -220,12 +223,11 @@ public class CourseRegisterActivity extends AppCompatActivity {
 
                     }
                 });
-                userRef.child("Courses").child(courseId).removeValue();
 
                 userRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child("Courses").child(courseId).exists()) {
+                        if(dataSnapshot.child("Courses").child(userCourseId).exists()) {
 
                             //Show toast message if the drop function is failed
                             Context context = getApplicationContext();

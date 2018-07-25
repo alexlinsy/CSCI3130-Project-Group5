@@ -40,5 +40,7 @@ public class courseInfoTest {
     }
 
 
-
+    @Test
+    public void getImageUrl() {
+    }
 }

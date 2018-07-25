@@ -50,15 +50,4 @@ public class IntermediaryActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
-
-
-    /**
-     * Method for Going back to the courses list page when the back button on navigation bar is pressed.
-     */
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        super.onBackPressed();
-    }
 }

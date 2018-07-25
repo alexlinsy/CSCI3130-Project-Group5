@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.dal.csci3130.coursesmanagementsystem.CoursesRegister.CourseRegisterActivity;
-import ca.dal.csci3130.coursesmanagementsystem.Login.IntermediaryActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
 /**
@@ -255,15 +254,4 @@ public class AcademicTimeTableActivity extends AppCompatActivity implements Adap
         startActivity(intent);
 
     }
-
-    /**
-     * Method for Going back to the courses list page when the back button on navigation bar is pressed.
-     */
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, IntermediaryActivity.class);
-        startActivity(intent);
-        super.onBackPressed();
-    }
-
 }

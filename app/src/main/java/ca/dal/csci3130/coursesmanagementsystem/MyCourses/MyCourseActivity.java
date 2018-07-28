@@ -11,8 +11,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import ca.dal.csci3130.coursesmanagementsystem.MainActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
@@ -82,7 +80,6 @@ public class MyCourseActivity extends AppCompatActivity implements NavigationVie
 
         }
         if (id == R.id.nav_logout) {
-            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }

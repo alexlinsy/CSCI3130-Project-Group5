@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
-import ca.dal.csci3130.coursesmanagementsystem.Login.IntermediaryActivity;
 import ca.dal.csci3130.coursesmanagementsystem.Login.LoginActivity;
 import ca.dal.csci3130.coursesmanagementsystem.Login.UserInformation;
 
@@ -46,20 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressDialog = new ProgressDialog(this);
-        firebaseAuth = FirebaseAuth.getInstance();
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
-        editTextEmail = (EditText)findViewById(R.id.editTextEmail);
-        editTextPassword=(EditText)findViewById(R.id.editTextPassword);
-        textViewSignin = (TextView)findViewById(R.id.textViewSignin);
-        buttonRegister.setOnClickListener(this);
-        textViewSignin.setOnClickListener(this);
-        databaseReference = FirebaseDatabase.getInstance().getReference("User");
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user != null) {
-            Intent intent = new Intent(this, IntermediaryActivity.class);
-            startActivity(intent);
-        }
+    progressDialog = new ProgressDialog(this);
+    firebaseAuth = FirebaseAuth.getInstance();
+    buttonRegister = (Button) findViewById(R.id.buttonRegister);
+    editTextEmail = (EditText)findViewById(R.id.editTextEmail);
+    editTextPassword=(EditText)findViewById(R.id.editTextPassword);
+    textViewSignin = (TextView)findViewById(R.id.textViewSignin);
+    buttonRegister.setOnClickListener(this);
+    textViewSignin.setOnClickListener(this);
+    databaseReference = FirebaseDatabase.getInstance().getReference("User");
+    FirebaseUser user = firebaseAuth.getCurrentUser();
     }
     /**
      * Method that authorized user to create a personal account, and validate the input password.
@@ -67,19 +62,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void registerUser(){
         String email = editTextEmail.getText().toString().trim();
         String password= editTextPassword.getText().toString().trim();
-
         //If user does not input email, then tells him to enter email
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
             return;
         }
-
         //If user does not input password, then tells him to enter password
             if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
             return;
         }
-
         //If password is satisfied rule, then it will register and store the information in database
         if(validate(password)==true) {
             progressDialog.setMessage("Registering User...");

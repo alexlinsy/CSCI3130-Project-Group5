@@ -8,6 +8,8 @@ public class userCourses {
     private String courseID;
     private String courseYear;
     private String courseMajor;
+    private String userCourseID;
+    private String courseTime;
 
     public userCourses() {
 
@@ -22,8 +24,14 @@ public class userCourses {
     public void setCourseYear(String courseYear) {
         this.courseYear = courseYear;
     }
-    public  void setCourseMajor(String courseMajor) {
+    public void setCourseMajor(String courseMajor) {
         this.courseMajor = courseMajor;
+    }
+    public void setUserCourseID(String userCourseID) {
+        this.userCourseID = userCourseID;
+    }
+    public void setCourseTime(String courseTime) {
+        this.courseTime = courseTime;
     }
 
     /**
@@ -44,6 +52,15 @@ public class userCourses {
     }
     public String getCourseMajor() {
         return courseMajor;
+    }
+    public String getUserCourseID() {
+        return userCourseID;
+    }
+    public String getCourseTime() {
+        return courseTime;
+    }
+    public String toString() {
+        return userCourseName;
     }
 
     /**

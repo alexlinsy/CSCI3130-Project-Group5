@@ -78,6 +78,40 @@ public class TestForRegisteredCourse {
     }
 
     @Test
+    public void testOnBasedOnAvailableTime(){
+        registeredCourse1.parseTime();
+        registeredCourse1.addBasedOnAvailableTime();
+        assertEquals(1,registeredCourse.getMonday().size());
+        assertEquals(1,registeredCourse.getWednesday().size());
+        assertEquals(1,registeredCourse.getFriday().size());
+        registeredCourse2.parseTime();
+        registeredCourse2.addBasedOnAvailableTime();
+        assertEquals(2,registeredCourse.getMonday().size());
+        assertEquals(2,registeredCourse.getWednesday().size());
+        assertEquals(2,registeredCourse.getFriday().size());
+    }
+
+    @Test
+    public void testOnMonday(){
+        registeredCourse1.parseTime();
+        registeredCourse2.parseTime();
+        registeredCourse3.parseTime();
+        registeredCourse4.parseTime();
+        registeredCourse1.addBasedOnAvailableTime();
+        registeredCourse2.addBasedOnAvailableTime();
+        registeredCourse3.addBasedOnAvailableTime();
+        registeredCourse4.addBasedOnAvailableTime();
+        registeredCourse.insertionSort(registeredCourse.getMonday());
+        registeredCourse.insertionSort(registeredCourse.getTuesday());
+        registeredCourse.insertionSort(registeredCourse.getWednesday());
+        registeredCourse.insertionSort(registeredCourse.getThursday());
+        registeredCourse.insertionSort(registeredCourse.getFriday());
+        assertEquals(4,registeredCourse.getFriday().size());
+        assertEquals(0,registeredCourse.getTuesday().size());
+    }
+
+
+    @Test
     public void timeConflict() {
         registeredCourse1.parseTime();
         registeredCourse5.parseTime();

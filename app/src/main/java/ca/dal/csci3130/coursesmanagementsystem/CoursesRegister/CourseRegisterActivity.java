@@ -1,6 +1,8 @@
 package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.AcademicTimeTableActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
 public class CourseRegisterActivity extends AppCompatActivity {
@@ -38,9 +42,16 @@ public class CourseRegisterActivity extends AppCompatActivity {
     public String study_year = "";
     public String major = "";
     private String courseId = "";
+    private String courseTime = "";
+    private String userCourseId = "";
     private Long seats;
     private int duration =  Toast.LENGTH_SHORT;
     private CharSequence text;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private DatabaseReference userRef;
+    private DatabaseReference accountRef;
+    private boolean exist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +67,20 @@ public class CourseRegisterActivity extends AppCompatActivity {
         String message = intent.getExtras().getString("EXTRA_MESSAGE");
 
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
+
+        //Create Alert Dialog box
+        final AlertDialog.Builder Alertbuilder = new AlertDialog.Builder(this);
+        Alertbuilder.setCancelable(true);
+
+        Alertbuilder.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
 
 
         if (message == null) {
@@ -71,12 +95,15 @@ public class CourseRegisterActivity extends AppCompatActivity {
             courseID = intent.getExtras().getString("EXTRA_COURSEID2");
             study_year = intent.getExtras().getString("EXTRA_YEAR2");
             major = intent.getExtras().getString("EXTRA_MAJOR2");
+            userCourseId = intent.getExtras().getString("EXTRA_userCourseID");
+
         } else {
             dropButton.setVisibility(View.GONE);
         }
 
-        final DatabaseReference myRef = database.getReference("faculty").child(major).child(study_year).child(courseID);
-        final DatabaseReference userRef = database.getReference("User").child(currentFirebaseUser.getUid());
+        myRef = database.getReference("faculty").child(major).child(study_year).child(courseID);
+        userRef = database.getReference("User").child(currentFirebaseUser.getUid());
+        accountRef = database.getReference("User").child(currentFirebaseUser.getUid()).child("Courses");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -92,11 +119,12 @@ public class CourseRegisterActivity extends AppCompatActivity {
                     taList.add(ds.getValue().toString());
                 }
 
-                String courseIntroduction = "Course Schedual: " + courseInfomation.getTime() + "\n\n" + courseInfomation.getCourseIntro() + "\n\n" + "TA: " + taList.toString() + "\n\n" + courseInfomation.getProfessorEmail();
+                String courseIntroduction = "Course Schedual: " + courseInfomation.getTime() + "\n\n" + courseInfomation.getCourseIntro() + "\n\n" + "TA: " + taList.toString();
                 coursesIntro.setText(courseIntroduction);
                 TextView courseName = (TextView)findViewById(R.id.courseDisplay);
                 courseName.setText(courseInfomation.getCourseName());
                 userCoursesName = courseInfomation.getCourseName();
+                courseTime = courseInfomation.getTime();
 
                 TextView courseProfessor = (TextView)findViewById(R.id.professorName);
                 courseProfessor.setText(courseInfomation.getProfessor());
@@ -119,33 +147,55 @@ public class CourseRegisterActivity extends AppCompatActivity {
             public  void onClick(View v) {
                 buttonEffect(registerButton);
                 //Change to the user page.
-                userCourses user = new userCourses();
-                user.setUserCourseName(userCoursesName);
-                user.setCourseID(courseID);
-                user.setCourseYear(study_year);
-                user.setCourseMajor(major);
-                courseId = userRef.push().getKey();
-                userRef.child("Courses").child(courseId).setValue(user);
-                Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
-                intent.putExtra("COURSE_ID", courseId);
-
-                //When a course is registered, the avaliable seats decreas by one
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                final userCourses user = new userCourses();
+                userRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        seats = (Long) dataSnapshot.child("seat").getValue();
-                        if(seats > 0) {
-                            seats = seats - 1;
+                        if (dataSnapshot.hasChild("Courses")) {
+                            accountRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                        String existCoursesName = ds.child("userCourseName").getValue().toString();
+                                        //Check if the course is already registered by user.
+                                        if (userCoursesName.equals(existCoursesName)) {
+                                            exist = true;
+                                            break;
+                                        } else {
+                                            exist = false;
+                                        }
+                                    }
+                                    if(exist) {
+                                        Alertbuilder.setMessage("Sorry, you registered this courses already");
+                                        AlertDialog alertBox = Alertbuilder.create();
+                                        alertBox.show();
+                                    } else {
+                                        /*
+                                         *If the course is not registed by user,
+                                         * Set up user's course property value,
+                                         * register the course
+                                         */
+                                        registerCourse(user);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        } else {
+                            registerCourse(user);
                         }
-                        myRef.child("seat").setValue(seats);
+
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    public void onCancelled (@NonNull DatabaseError databaseError){
 
                     }
                 });
-                startActivity(intent);
+
             }
         });
         /**
@@ -154,6 +204,8 @@ public class CourseRegisterActivity extends AppCompatActivity {
         dropButton.setOnClickListener(new Button.OnClickListener() {
             public  void onClick(View v) {
                 buttonEffect(dropButton);
+
+                userRef.child("Courses").child(userCourseId).removeValue();
 
                 //When a course is dropped, avaliable seat increase by one
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -171,12 +223,12 @@ public class CourseRegisterActivity extends AppCompatActivity {
 
                     }
                 });
-                userRef.child("Courses").child(courseId).removeValue();
 
                 userRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child("Courses").exists()) {
+                        if(dataSnapshot.child("Courses").child(userCourseId).exists()) {
+
                             //Show toast message if the drop function is failed
                             Context context = getApplicationContext();
                             text = "Your course is not successful dropped";
@@ -184,13 +236,13 @@ public class CourseRegisterActivity extends AppCompatActivity {
                             toast.show();
                         } else {
 
+                            //If course is successfully drop, change to userActivity class
                             Context context = getApplicationContext();
                             text = "Your course is successful dropped!";
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
 
                             Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
-                            intent.putExtra("COURSE_ID", courseId);
                             startActivity(intent);
                         }
                     }
@@ -203,6 +255,76 @@ public class CourseRegisterActivity extends AppCompatActivity {
             }
         });
 
+        initToolbar();
+
+    }
+
+    /**
+     * Method for Going back to the courses list page when the back button on navigation bar is pressed.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, AcademicTimeTableActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
+    /**
+     * Initial the navigation tool bar on top
+     */
+    private void initToolbar(){
+        getSupportActionBar().setTitle("Courses Management System");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    /**
+     * Add the back option on top navigation bar
+     * @param item back option item
+     * @return item value, go back to previous page
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case android.R.id.home:{
+                onBackPressed();
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Method for registering user's courses
+     * @param user the userCourses object
+     */
+    public void registerCourse (userCourses user) {
+        user.setUserCourseName(userCoursesName);
+        user.setCourseID(courseID);
+        user.setCourseYear(study_year);
+        user.setCourseMajor(major);
+        user.setCourseTime(courseTime);
+        courseId = userRef.push().getKey();
+        user.setUserCourseID(courseId);
+        userRef.child("Courses").child(courseId).setValue(user);
+
+        Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
+
+        //When a course is registered, the avaliable seats decreas by one
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                seats = (Long) dataSnapshot.child("seat").getValue();
+                if (seats > 0) {
+                    seats = seats - 1;
+                }
+                myRef.child("seat").setValue(seats);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        startActivity(intent);
     }
 
     /**

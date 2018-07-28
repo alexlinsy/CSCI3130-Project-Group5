@@ -1,8 +1,9 @@
 package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
+
 /***
  * Class for get course detail infomation
  */
-public class courseInfo {
+public class courseInfo{
 
     private String courseIntro;
     private String courseName;

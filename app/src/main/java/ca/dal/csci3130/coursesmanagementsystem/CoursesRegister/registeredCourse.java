@@ -1,8 +1,9 @@
 package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class registeredCourse {
+public class registeredCourse implements Serializable{
     private String courseID;
     private String courseMajor;
     private String courseTime;
@@ -18,6 +19,9 @@ public class registeredCourse {
     private static ArrayList<registeredCourse>Friday = new ArrayList<>();
     private boolean checkConflit = false;
 
+    public registeredCourse(){
+
+    }
     public registeredCourse(String courseID,String courseMajor,String courseTime,String courseYear){
         this.courseID = courseID;
         this.courseMajor = courseMajor;
@@ -203,13 +207,15 @@ public class registeredCourse {
         if(getMonday().size()>1) {
             for (int i = 0; i < getMonday().size(); i++) {
                 currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
-                for (int j = i+1; j < getMonday().size(); j++) {
-                    allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
-                    if (currentCourseEndTime > allCoursesStartTime) {
-                        checkConflit = true;
-                        break;
-                    } else {
-                        checkConflit = false;
+                if(i<getMonday().size()-1) {
+                    for (int j = i + 1; j < getMonday().size(); j++) {
+                        allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
+                        if (currentCourseEndTime > allCoursesStartTime) {
+                            checkConflit = true;
+                            break;
+                        } else {
+                            checkConflit = false;
+                        }
                     }
                 }
             }
@@ -217,14 +223,16 @@ public class registeredCourse {
 
         if(getTuesday().size() > 1) {
             for (int i = 0; i < getTuesday().size(); i++) {
-                currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
-                for (int j = i+1; j < getTuesday().size(); j++) {
-                    allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
-                    if (currentCourseEndTime > allCoursesStartTime) {
-                        checkConflit = true;
-                        break;
-                    } else {
-                        checkConflit = false;
+                currentCourseEndTime = Integer.parseInt(getTuesday().get(i).getEndTime());
+                if(i<getTuesday().size()-1) {
+                    for (int j = i + 1; j < getTuesday().size(); j++) {
+                        allCoursesStartTime = Integer.parseInt(getTuesday().get(j).getStartTime());
+                        if (currentCourseEndTime > allCoursesStartTime) {
+                            checkConflit = true;
+                            break;
+                        } else {
+                            checkConflit = false;
+                        }
                     }
                 }
             }
@@ -232,14 +240,16 @@ public class registeredCourse {
 
         if(getWednesday().size() > 1) {
             for (int i = 0; i < getWednesday().size(); i++) {
-                currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
-                for (int j = i+1; j < getWednesday().size(); j++) {
-                    allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
-                    if (currentCourseEndTime > allCoursesStartTime) {
-                        checkConflit = true;
-                        break;
-                    } else {
-                        checkConflit = false;
+                currentCourseEndTime = Integer.parseInt(getWednesday().get(i).getEndTime());
+                if(i<getWednesday().size()-1) {
+                    for (int j = i + 1; j < getWednesday().size(); j++) {
+                        allCoursesStartTime = Integer.parseInt(getWednesday().get(j).getStartTime());
+                        if (currentCourseEndTime > allCoursesStartTime) {
+                            checkConflit = true;
+                            break;
+                        } else {
+                            checkConflit = false;
+                        }
                     }
                 }
             }
@@ -247,14 +257,16 @@ public class registeredCourse {
 
         if(getThursday().size() > 1) {
             for (int i = 0; i < getThursday().size(); i++) {
-                currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
-                for (int j = i+1; j < getThursday().size(); j++) {
-                    allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
-                    if (currentCourseEndTime > allCoursesStartTime) {
-                        checkConflit = true;
-                        break;
-                    } else {
-                        checkConflit = false;
+                currentCourseEndTime = Integer.parseInt(getThursday().get(i).getEndTime());
+                if(i<getThursday().size()-1) {
+                    for (int j = i + 1; j < getThursday().size(); j++) {
+                        allCoursesStartTime = Integer.parseInt(getThursday().get(j).getStartTime());
+                        if (currentCourseEndTime > allCoursesStartTime) {
+                            checkConflit = true;
+                            break;
+                        } else {
+                            checkConflit = false;
+                        }
                     }
                 }
             }
@@ -262,14 +274,16 @@ public class registeredCourse {
 
         if(getFriday().size() > 1) {
             for (int i = 0; i < getFriday().size(); i++) {
-                currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
-                for (int j = i+1; j < getFriday().size(); j++) {
-                    allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
-                    if (currentCourseEndTime > allCoursesStartTime) {
-                        checkConflit = true;
-                        break;
-                    } else {
-                        checkConflit = false;
+                currentCourseEndTime = Integer.parseInt(getFriday().get(i).getEndTime());
+                if(i<getFriday().size()-1) {
+                    for (int j = i + 1; j < getFriday().size(); j++) {
+                        allCoursesStartTime = Integer.parseInt(getFriday().get(j).getStartTime());
+                        if (currentCourseEndTime > allCoursesStartTime) {
+                            checkConflit = true;
+                            break;
+                        } else {
+                            checkConflit = false;
+                        }
                     }
                 }
             }

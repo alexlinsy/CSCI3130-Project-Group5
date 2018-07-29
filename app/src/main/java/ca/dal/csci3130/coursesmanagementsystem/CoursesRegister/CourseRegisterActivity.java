@@ -279,7 +279,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
 
     /**
      * Add the back option on top navigation bar
-     * @param item back option item
+     * @param item back option items
      * @return item value, go back to previous page
      */
     @Override

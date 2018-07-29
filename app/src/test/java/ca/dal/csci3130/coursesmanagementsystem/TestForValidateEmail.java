@@ -1,12 +1,12 @@
 package ca.dal.csci3130.coursesmanagementsystem;
 
+
+
 import org.junit.Test;
 
 import ca.dal.csci3130.coursesmanagementsystem.Login.ResetPassword;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-
-
 public class TestForValidateEmail {
     private ResetPassword valid = new ResetPassword();
     @Test
@@ -34,7 +34,6 @@ public class TestForValidateEmail {
         assertTrue(valid.validate("iwqew12@yahoo.com"));
 
     }
-
 
 
 }

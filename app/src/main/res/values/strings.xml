@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Courses Management System</string>
     <string name="seats">Seats</string>
-    <string name = "payment">Payment is due within first 10 business days.</string>
     <string-array name="spinner1">
         <item>Year 1</item>
         <item>Year 2</item>
@@ -15,32 +14,6 @@
         <item>computer Science</item>
         <item>Science</item>
     </string-array>
-
-    <string-array name="Main">
-        <item>Timetable</item>
-        <item>Subject</item>
-        <item>Faculty</item>
-        <item>Resource</item>
-    </string-array>
-
-    <string-array name="Description">
-        <item>Description 1</item>
-        <item>Description 2</item>
-        <item>Description 3</item>
-        <item>Description 4</item>
-    </string-array>
-
-    <string-array name="Week">
-        <item> Monday </item>
-        <item> Tuesday </item>
-        <item> Wednesday </item>
-        <item> Thursday </item>
-        <item> Friday </item>
-        <item> Saturday </item>
-        <item> Sunday </item>
-    </string-array>
-
-
     <string name="textview">textView</string>
     <string name="open">open</string>
     <string name="close">close</string>

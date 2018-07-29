@@ -16,7 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import org.w3c.dom.Text;
 
 import ca.dal.csci3130.coursesmanagementsystem.MainActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
@@ -51,12 +52,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      buttonLogin.setOnClickListener(this);
      textViewSignup.setOnClickListener(this);
      textViewResetPass.setOnClickListener(this);
-
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user != null) {
-            Intent intent = new Intent(this, IntermediaryActivity.class);
-            startActivity(intent);
-        }
     }
     /**
      * The method that let user to login their account.
@@ -115,15 +110,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(new Intent(this, ResetPassword.class));
     }
 
-    }
-
-    /**
-     * Method for Going back to the courses list page when the back button on navigation bar is pressed.
-     */
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        super.onBackPressed();
     }
 }

@@ -1,3 +1,4 @@
+
 package ca.dal.csci3130.coursesmanagementsystem.DisplayCourses;
 
 import android.content.Intent;
@@ -240,7 +241,6 @@ public class AcademicTimeTableActivity extends AppCompatActivity implements Adap
         TaInfoActivity.setInfo(course.getTaInfo());
         MoreInfoActivity.setCourseInfo(course.getCourseIntro());
         Intent intent = new Intent(this,MoreInfoActivity.class);
-
         //JUMP to next UI.
         startActivity(intent); */
         Intent intent = new Intent(AcademicTimeTableActivity.this, CourseRegisterActivity.class);

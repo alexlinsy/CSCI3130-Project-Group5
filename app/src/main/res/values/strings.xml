@@ -18,9 +18,9 @@
 
     <string-array name="Main">
         <item>Timetable</item>
-        <item>Subject</item>
-        <item>Faculty</item>
-        <item>Resource</item>
+        <item>Grade</item>
+        <item>Log Out</item>
+        <!--<item>Resource</item>-->
     </string-array>
 
     <string-array name="Description">

@@ -24,7 +24,6 @@
         <activity android:name=".CourseRecommandation.CourseRecommendActivity" />
         <activity android:name=".DisplayCourses.MoreInfoActivity" />
         <activity android:name=".DisplayCourses.TaInfoActivity" />
-        <activity android:name=".MyCourses.MyCourseActivity" />
         <activity android:name=".CourseRecommandation.Year1Activity" />
         <activity android:name=".CourseRecommandation.Year4Activity" />
         <activity android:name=".CourseRecommandation.Year3Activity" />

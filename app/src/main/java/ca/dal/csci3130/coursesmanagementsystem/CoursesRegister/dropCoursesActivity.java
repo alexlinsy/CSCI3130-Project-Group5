@@ -111,7 +111,8 @@ public class dropCoursesActivity extends AppCompatActivity {
             public  void onClick(View v) {
                 buttonEffect(dropButton);
 
-                accountRef.child(userCourseId).removeValue();
+               accountRef.child(userCourseId).removeValue();
+
 
                 //When a course is dropped, avaliable seat increase by one
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -152,6 +153,7 @@ public class dropCoursesActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     }
+
 
 
 

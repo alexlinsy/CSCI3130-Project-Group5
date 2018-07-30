@@ -66,7 +66,7 @@ public class UserActivity extends AppCompatActivity {
 
 
         //Show courses' names
-        accountRef.addValueEventListener(new ValueEventListener() {
+        accountRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -75,15 +75,19 @@ public class UserActivity extends AppCompatActivity {
                     major = ds.child("courseMajor").getValue().toString();
                     courseTime = ds.child("courseTime").getValue().toString();
                     study_year = ds.child("courseYear").getValue().toString();
+                    //Create courseRegister Object to check the time conflict
+
+
                     //Create userCourses Object to add courses to listView
                     userCourses studentCourses = ds.getValue(userCourses.class);
                     arrayList.add(studentCourses);
                 }
-                //Create courseRegister Object to check the time conflict
-                currentCourses = new registeredCourse(courseID, major, courseTime, study_year);
 
-                currentCourses.parseTime();
-                currentCourses.addBasedOnAvailableTime();
+                currentCourses = new registeredCourse(courseID, major, courseTime, study_year);
+                if(arrayList.size()>1) {
+                    currentCourses.parseTime();
+                    currentCourses.addBasedOnAvailableTime();
+                }
 
                 ListAdapter arrayAdapter = new ArrayAdapter<userCourses>(UserActivity.this, android.R.layout.simple_list_item_1, arrayList);
 
@@ -94,6 +98,7 @@ public class UserActivity extends AppCompatActivity {
                     AlertDialog alertBox = Alertbuilder.create();
                     alertBox.show();
                 }
+
 
             }
 

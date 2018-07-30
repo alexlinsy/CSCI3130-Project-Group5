@@ -36,6 +36,7 @@
         <activity android:name=".MyCourses.WeekActivity" />
         <activity android:name=".MyCourses.GradesActivity" />
         <activity android:name=".CoursesRegister.dropCoursesActivity"></activity>
+        <activity android:name=".Login.ResetPassword"></activity>
     </application>
 
 </manifest>

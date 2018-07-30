@@ -205,10 +205,10 @@ public class registeredCourse implements Serializable{
 
         //Check if the course time is conflict in each arrayList crated by Date.
         if(getMonday().size()>1) {
-            for (int i = 0; i < getMonday().size(); i++) {
+            for (int i = 0; i < getMonday().size()-1; i++) {
                 currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
                 if(i<getMonday().size()-1) {
-                    for (int j = i + 1; j < getMonday().size(); j++) {
+                    for (int j = i + 1; j < getMonday().size()-2; j++) {
                         allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
                         if (currentCourseEndTime > allCoursesStartTime) {
                             checkConflit = true;
@@ -216,6 +216,9 @@ public class registeredCourse implements Serializable{
                         } else {
                             checkConflit = false;
                         }
+                    }
+                    if(checkConflit = true) {
+                        break;
                     }
                 }
             }
@@ -234,15 +237,18 @@ public class registeredCourse implements Serializable{
                             checkConflit = false;
                         }
                     }
+                    if(checkConflit = true) {
+                        break;
+                    }
                 }
             }
         }
 
         if(getWednesday().size() > 1) {
-            for (int i = 0; i < getWednesday().size(); i++) {
+            for (int i = 0; i < getWednesday().size()-1; i++) {
                 currentCourseEndTime = Integer.parseInt(getWednesday().get(i).getEndTime());
                 if(i<getWednesday().size()-1) {
-                    for (int j = i + 1; j < getWednesday().size(); j++) {
+                    for (int j = i + 1; j < getWednesday().size()-2; j++) {
                         allCoursesStartTime = Integer.parseInt(getWednesday().get(j).getStartTime());
                         if (currentCourseEndTime > allCoursesStartTime) {
                             checkConflit = true;
@@ -251,7 +257,11 @@ public class registeredCourse implements Serializable{
                             checkConflit = false;
                         }
                     }
+                    if(checkConflit = true) {
+                        break;
+                    }
                 }
+
             }
         }
 
@@ -267,6 +277,9 @@ public class registeredCourse implements Serializable{
                         } else {
                             checkConflit = false;
                         }
+                    }
+                    if(checkConflit = true) {
+                        break;
                     }
                 }
             }
@@ -284,6 +297,9 @@ public class registeredCourse implements Serializable{
                         } else {
                             checkConflit = false;
                         }
+                    }
+                    if(checkConflit = true) {
+                        break;
                     }
                 }
             }

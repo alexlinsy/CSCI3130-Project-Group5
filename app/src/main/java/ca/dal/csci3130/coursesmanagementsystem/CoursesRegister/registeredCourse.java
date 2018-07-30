@@ -83,6 +83,10 @@ public class registeredCourse implements Serializable{
         this.courseMajor = courseMajor;
     }
 
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
     public String getCourseID() {
 
         return courseID;
@@ -102,10 +106,6 @@ public class registeredCourse implements Serializable{
     }
     public static ArrayList<registeredCourse>getFriday(){
         return Friday;
-    }
-
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
     }
 
     public void parseTime(){
@@ -208,7 +208,7 @@ public class registeredCourse implements Serializable{
             for (int i = 0; i < getMonday().size()-1; i++) {
                 currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
                 if(i<getMonday().size()-1) {
-                    for (int j = i + 1; j < getMonday().size()-2; j++) {
+                    for (int j = i + 1; j < getMonday().size()-1; j++) {
                         allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
                         if (currentCourseEndTime > allCoursesStartTime) {
                             checkConflit = true;
@@ -218,6 +218,9 @@ public class registeredCourse implements Serializable{
                         }
                     }
                     if(checkConflit = true) {
+                        break;
+                    }
+                    if(i > getMonday().size()-2) {
                         break;
                     }
                 }
@@ -248,7 +251,7 @@ public class registeredCourse implements Serializable{
             for (int i = 0; i < getWednesday().size()-1; i++) {
                 currentCourseEndTime = Integer.parseInt(getWednesday().get(i).getEndTime());
                 if(i<getWednesday().size()-1) {
-                    for (int j = i + 1; j < getWednesday().size()-2; j++) {
+                    for (int j = i + 1; j < getWednesday().size()-1; j++) {
                         allCoursesStartTime = Integer.parseInt(getWednesday().get(j).getStartTime());
                         if (currentCourseEndTime > allCoursesStartTime) {
                             checkConflit = true;
@@ -258,6 +261,9 @@ public class registeredCourse implements Serializable{
                         }
                     }
                     if(checkConflit = true) {
+                        break;
+                    }
+                    if(i > getMonday().size()-2) {
                         break;
                     }
                 }

@@ -3,6 +3,7 @@ package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -36,6 +37,7 @@ public class UserActivity extends AppCompatActivity {
     public String courseRegisterID = "";
     public String courseTime = "";
     public registeredCourse currentCourses;
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +95,17 @@ public class UserActivity extends AppCompatActivity {
 
                 coursesView.setAdapter(arrayAdapter);
 
+                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                boolean dialogShown = settings.getBoolean("dialogShown", false);
                 if(currentCourses.timeConflit()) {
                     Alertbuilder.setMessage("Your register courses have time conflict, please check the academic time table ");
                     AlertDialog alertBox = Alertbuilder.create();
-                    alertBox.show();
+                    if(!dialogShown) {
+                        alertBox.show();
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean("dialogShown", true);
+                        editor.commit();
+                    }
                 }
 
 

@@ -111,6 +111,19 @@ public class dropCoursesActivity extends AppCompatActivity {
             public  void onClick(View v) {
                 buttonEffect(dropButton);
 
+
+                for (int i = 0; i < registeredCourse.getMonday().size(); i++) {
+                    String mondayCourse = registeredCourse.getMonday().get(i).getCourseID();
+                    if (mondayCourse.equalsIgnoreCase(courseID)) {
+                        registeredCourse.getMonday().remove(i);
+                    }
+                }
+                for (int i = 0; i < registeredCourse.getWednesday().size(); i++) {
+                    if (registeredCourse.getWednesday().get(i).getCourseID().equalsIgnoreCase(courseID)) {
+                        registeredCourse.getWednesday().remove(i);
+                    }
+                }
+
                accountRef.child(userCourseId).removeValue();
 
 

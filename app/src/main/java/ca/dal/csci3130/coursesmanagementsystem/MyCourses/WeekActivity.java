@@ -38,7 +38,7 @@ public class WeekActivity extends AppCompatActivity {
     private ListView listView;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    DatabaseReference myRef = database.getReference("User").child(currentFirebaseUser.getUid()).child("Courses");
+    DatabaseReference myRef = database.getReference("User").child(currentFirebaseUser.getUid()).child("Course");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -48,7 +48,7 @@ public class UserActivity extends AppCompatActivity {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        final DatabaseReference accountRef = database.getReference("User").child(currentUser.getUid()).child("Courses");
+        final DatabaseReference accountRef = database.getReference("User").child(currentUser.getUid()).child("Course");
 
         final ArrayList<userCourses> arrayList = new ArrayList<userCourses>();
 
@@ -137,15 +137,12 @@ public class UserActivity extends AppCompatActivity {
      * @param major the major of the user
      */
     public void jumpActivity(String courseID, String study_year, String major, String courseRegisterID) {
-        Intent intent = new Intent(UserActivity.this, CourseRegisterActivity.class);
-
-        String message = "showButton";
+        Intent intent = new Intent(UserActivity.this, dropCoursesActivity.class);
 
         Bundle extras = new Bundle();
         extras.putString("EXTRA_COURSEID2", courseID);
         extras.putString("EXTRA_YEAR2", study_year);
         extras.putString("EXTRA_MAJOR2", major);
-        extras.putString("EXTRA_MESSAGE", message);
         extras.putString("EXTRA_userCourseID", courseRegisterID);
         intent.putExtras(extras);
 

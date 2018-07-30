@@ -30,16 +30,13 @@ import java.util.ArrayList;
 import ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.AcademicTimeTableActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
-public class CourseRegisterActivity extends AppCompatActivity {
+public class dropCoursesActivity extends AppCompatActivity {
 
     private static final String TAG = "CourseRegisterActivity";
-    private String userCoursesName;
-    public static Button registerButton;
+    public Button dropButton;
     public String courseID = "";
     public String study_year = "";
     public String major = "";
-    private String courseId = "";
-    private String courseTime = "";
     private String userCourseId = "";
     private Long seats;
     private int duration =  Toast.LENGTH_SHORT;
@@ -48,24 +45,26 @@ public class CourseRegisterActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private DatabaseReference userRef;
     private DatabaseReference accountRef;
-    private boolean exist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_register);
+        setContentView(R.layout.activity_drop_courses);
 
-        registerButton = (Button)findViewById(R.id.registerButton1);
+        dropButton = (Button)findViewById(R.id.dropButton1);
 
         //Get current firebase user
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Intent intent = getIntent();
 
+
         database = FirebaseDatabase.getInstance();
 
-        courseID = intent.getExtras().getString("EXTRA_COURSEID");
-        study_year = intent.getExtras().getString("EXTRA_YEAR");
-        major = intent.getExtras().getString("EXTRA_MAJOR");
+        courseID = intent.getExtras().getString("EXTRA_COURSEID2");
+        study_year = intent.getExtras().getString("EXTRA_YEAR2");
+        major = intent.getExtras().getString("EXTRA_MAJOR2");
+        userCourseId = intent.getExtras().getString("EXTRA_userCourseID");
+
 
         myRef = database.getReference("faculty").child(major).child(study_year).child(courseID);
         userRef = database.getReference("User").child(currentFirebaseUser.getUid());
@@ -78,7 +77,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
 
                 //Retrieve data from firebaase to textView and imageView
                 courseInfo courseInfomation = dataSnapshot.getValue(courseInfo.class);
-                TextView coursesIntro = (TextView)findViewById(R.id.courseIntro);
+                TextView coursesIntro = (TextView)findViewById(R.id.courseIntro1);
                 ArrayList<String> taList = new ArrayList<String>();
 
                 for (DataSnapshot ds : dataSnapshot.child("ta").getChildren()) {
@@ -87,15 +86,13 @@ public class CourseRegisterActivity extends AppCompatActivity {
 
                 String courseIntroduction = "Course Schedual: " + courseInfomation.getTime() + "\n\n" + courseInfomation.getCourseIntro() + "\n\n" + "TA: " + taList.toString();
                 coursesIntro.setText(courseIntroduction);
-                TextView courseName = (TextView)findViewById(R.id.courseDisplay);
+                TextView courseName = (TextView)findViewById(R.id.courseDisplay1);
                 courseName.setText(courseInfomation.getCourseName());
-                userCoursesName = courseInfomation.getCourseName();
-                courseTime = courseInfomation.getTime();
 
-                TextView courseProfessor = (TextView)findViewById(R.id.professorName);
+                TextView courseProfessor = (TextView)findViewById(R.id.professorName1);
                 courseProfessor.setText(courseInfomation.getProfessor());
 
-                ImageView professorAvatar = (ImageView)findViewById(R.id.professorAvatar);
+                ImageView professorAvatar = (ImageView)findViewById(R.id.professorAvatar1);
                 //Get image from Url
                 Picasso.get().load(courseInfomation.getImageUrl()).resize(400,400).into(professorAvatar);
 
@@ -106,40 +103,25 @@ public class CourseRegisterActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
         /**
-         * Button function for registering courses
+         * Button function for dropping courses
          */
-        registerButton.setOnClickListener(new Button.OnClickListener() {
+        dropButton.setOnClickListener(new Button.OnClickListener() {
             public  void onClick(View v) {
-                buttonEffect(registerButton);
-                //Change to the user page.
-                final userCourses user = new userCourses();
-                accountRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                buttonEffect(dropButton);
+
+                accountRef.child(userCourseId).removeValue();
+
+                //When a course is dropped, avaliable seat increase by one
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            String existCoursesName = ds.child("userCourseName").getValue().toString();
-                            //Check if the course is already registered by user.
-                            if (userCoursesName.equals(existCoursesName)) {
-                                exist = true;
-                                break;
-                            } else {
-                                exist = false;
-                            }
+                        seats = (Long) dataSnapshot.child("seat").getValue();
+                        if(seats < 100) {
+                            seats = seats + 1;
                         }
-                        if (exist) {
-                            Context context = getApplicationContext();
-                            text = "Sorry, you register this course already.";
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
-                        } else {
-                            /*
-                             *If the course is not registed by user,
-                             * Set up user's course property value,
-                             * register the course
-                             */
-                            registerCourse(user);
-                        }
+                        myRef.child("seat").setValue(seats);
                     }
 
                     @Override
@@ -147,8 +129,38 @@ public class CourseRegisterActivity extends AppCompatActivity {
 
                     }
                 });
-            }
 
+                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child("Course").child(userCourseId).exists()) {
+
+                            //Show toast message if the drop function is failed
+                            Context context = getApplicationContext();
+                            text = "Your course is not successful dropped";
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        } else {
+
+                            //If course is successfully drop, change to userActivity class
+                            Context context = getApplicationContext();
+                            text = "Your course is successful dropped!";
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+
+                            Intent intent = new Intent(dropCoursesActivity.this, UserActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
         });
 
         initToolbar();
@@ -178,6 +190,7 @@ public class CourseRegisterActivity extends AppCompatActivity {
      * @param item back option items
      * @return item value, go back to previous page
      */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
@@ -188,39 +201,6 @@ public class CourseRegisterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Method for registering user's courses
-     * @param user the userCourses object
-     */
-    public void registerCourse (userCourses user) {
-        user.setUserCourseName(userCoursesName);
-        user.setCourseID(courseID);
-        user.setCourseYear(study_year);
-        user.setCourseMajor(major);
-        user.setCourseTime(courseTime);
-        courseId = userRef.push().getKey();
-        user.setUserCourseID(courseId);
-        userRef.child("Course").child(courseId).setValue(user);
-
-        //When a course is registered, the avaliable seats decreas by one
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                seats = (Long) dataSnapshot.child("seat").getValue();
-                if (seats > 0) {
-                    seats = seats - 1;
-                }
-                myRef.child("seat").setValue(seats);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        Intent intent = new Intent(CourseRegisterActivity.this, UserActivity.class);
-        startActivity(intent);
-    }
 
     /**
      * Method to create the effect when click the image button

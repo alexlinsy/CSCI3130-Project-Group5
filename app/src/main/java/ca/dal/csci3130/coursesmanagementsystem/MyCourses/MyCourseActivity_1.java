@@ -14,6 +14,10 @@ import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import ca.dal.csci3130.coursesmanagementsystem.CoursesRegister.UserActivity;
+import ca.dal.csci3130.coursesmanagementsystem.Login.LoginActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
 public class MyCourseActivity_1 extends AppCompatActivity {
@@ -51,9 +55,22 @@ public class MyCourseActivity_1 extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     }
-                    case 1:break;
-                    case 2:break;
-                    case 3:break;
+                    case 1:{
+                        Intent intent = new Intent(MyCourseActivity_1.this,GradesActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case 2:{
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(MyCourseActivity_1.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case 3:{
+                        Intent intent = new Intent(MyCourseActivity_1.this, UserActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
                     case 4:break;
                 }
             }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Courses Management System</string>
     <string name="seats">Seats</string>
-    <string name = "payment">Payment is due within first 10 business days.</string>
+    <string name="payment">Payment is due within first 10 business days.</string>
     <string-array name="spinner1">
         <item>Year 1</item>
         <item>Year 2</item>
@@ -20,7 +20,7 @@
         <item>Timetable</item>
         <item>Grade</item>
         <item>Log Out</item>
-        <!--<item>Resource</item>-->
+        <item>My courses</item>
     </string-array>
 
     <string-array name="Description">

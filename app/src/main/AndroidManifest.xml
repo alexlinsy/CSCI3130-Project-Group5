@@ -30,11 +30,12 @@
         <activity android:name=".CourseRecommandation.Year2Activity" />
         <activity android:name=".CourseRecommandation.LevelActivity" />
         <activity android:name=".CoursesRegister.CourseRegisterActivity" />
-        <activity android:name=".CoursesRegister.UserActivity"></activity>
-        <activity android:name=".MyCourses.MyCourseActivity_1"></activity>
-        <activity android:name=".MyCourses.dailyActivity"></activity>
-        <activity android:name=".MyCourses.WeekActivity"></activity>
-
+        <activity android:name=".CoursesRegister.UserActivity" />
+        <activity android:name=".MyCourses.MyCourseActivity_1" />
+        <activity android:name=".MyCourses.dailyActivity" />
+        <activity android:name=".MyCourses.WeekActivity" />
+        <activity android:name=".MyCourses.GradesActivity" />
+        <activity android:name=".CoursesRegister.dropCoursesActivity"></activity>
     </application>
 
 </manifest>

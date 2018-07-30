@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CoursesRegister.CourseRegisterActivity">
+    tools:context=".CoursesRegister.dropCoursesActivity">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/relativelayout"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/backgroundImageView"
+            android:id="@+id/backgroundImageView1"
             android:layout_width="700dp"
             android:layout_height="326dp"
             android:contentDescription="@string/todo"
@@ -24,7 +24,7 @@
             tools:layout_editor_absoluteY="0dp" />
 
         <TextView
-            android:id="@+id/courseDisplay"
+            android:id="@+id/courseDisplay1"
             android:layout_width="219dp"
             android:layout_height="37dp"
             android:layout_alignParentTop="true"
@@ -36,7 +36,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/professorAvatar"
+            android:id="@+id/professorAvatar1"
             android:layout_width="132dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -46,7 +46,7 @@
             app:srcCompat="@drawable/avatar" />
 
         <TextView
-            android:id="@+id/professorName"
+            android:id="@+id/professorName1"
             android:layout_width="179dp"
             android:layout_height="35dp"
             android:layout_alignParentTop="true"
@@ -57,20 +57,8 @@
             android:textColor="@android:color/white" />
 
 
-
-        <Button
-            android:id="@+id/registerButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="70dp"
-            android:background="@drawable/register_button"
-            android:clickable="true"
-            android:contextClickable="true" />
-
         <ScrollView
-            android:id="@+id/courseScrollView"
+            android:id="@+id/courseScrollView1"
             android:layout_width="375dp"
             android:layout_height="146dp"
             android:layout_alignParentBottom="true"
@@ -84,12 +72,23 @@
                 android:stretchColumns="1">
 
                 <TextView
-                    android:id="@+id/courseIntro"
+                    android:id="@+id/courseIntro1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/course_intro" />
             </TableLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/dropButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/drop_button"
+            android:clickable="true"
+            android:contextClickable="true" />
 
     </RelativeLayout>
 

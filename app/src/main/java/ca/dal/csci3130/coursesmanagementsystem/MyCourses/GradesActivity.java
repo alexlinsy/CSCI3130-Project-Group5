@@ -41,29 +41,7 @@ public class GradesActivity extends MyCourseActivity_1 {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String item = ds.getKey();
                     Long grade = (Long)ds.getValue();
-                    if(grade>=90)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA+";
-                    else if(grade>=85)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA";
-                    else if(grade>=80)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA-";
-                    else if(grade>=77)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tB+";
-                    else if(grade>=73)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tB";
-                    else if(grade>=70)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tB-";
-                    else if(grade>=65)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tC+";
-                    else if(grade>=60)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tC";
-                    else if(grade>=55)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tC-";
-                    else if(grade>=50)
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tD";
-                    else
-                        item+="\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tF";
-
+                    item += convert(grade);
                     arrayList.add(item);
                 }
                 ListAdapter arrayAdapter = new ArrayAdapter<String>(GradesActivity.this, android.R.layout.simple_list_item_1, arrayList);
@@ -86,6 +64,34 @@ public class GradesActivity extends MyCourseActivity_1 {
             Intent intent = new Intent(GradesActivity.this, AcademicTimeTableActivity.class);
             startActivity(intent);
         }
+    }
+
+    public String convert(Long grade){
+        String item ="";
+        if (grade >= 90)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA+";
+        else if (grade >= 85)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA";
+        else if (grade >= 80)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA-";
+        else if (grade >= 77)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tB+";
+        else if (grade >= 73)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tB";
+        else if (grade >= 70)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tB-";
+        else if (grade >= 65)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tC+";
+        else if (grade >= 60)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tC";
+        else if (grade >= 55)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tC-";
+        else if (grade >= 50)
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tD";
+        else
+            item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tF";
+        return item;
+
     }
 
 

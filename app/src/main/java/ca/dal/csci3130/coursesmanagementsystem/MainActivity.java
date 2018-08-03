@@ -171,5 +171,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          startActivity(new Intent(this, LoginActivity.class));
        }
     }
+
+    /**
+     * Method for Going back to the courses list page when the back button on navigation bar is pressed.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 }
 

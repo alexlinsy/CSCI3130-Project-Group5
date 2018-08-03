@@ -57,14 +57,13 @@
             android:textColor="@android:color/white" />
 
 
-
         <Button
             android:id="@+id/registerButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="42dp"
             android:background="@drawable/register_button"
             android:clickable="true"
             android:contextClickable="true" />

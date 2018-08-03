@@ -5,8 +5,10 @@ import org.junit.Test;
 import ca.dal.csci3130.coursesmanagementsystem.Login.ResetPassword;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-
-
+/**
+ * This test is used to test for the email validation
+ * The input string should be a email format. 
+ */
 public class TestForValidateEmail {
     private ResetPassword valid = new ResetPassword();
     @Test

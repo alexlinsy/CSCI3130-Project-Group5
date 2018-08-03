@@ -23,6 +23,10 @@ import ca.dal.csci3130.coursesmanagementsystem.R;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * This class is defined to show the student's grades when clicking the listview
+ *
+ */
 public class GradesActivity extends MyCourseActivity_1 {
 
     @Override
@@ -35,6 +39,11 @@ public class GradesActivity extends MyCourseActivity_1 {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("User").child(currentUser.getUid()).child("Grade");
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
+            /**
+             * get the grade marks(long type) from firebase one bu one
+             * and convert into the grade levels(string type)
+             * add the grade levels one by one to an arraylists
+             */
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<String> arrayList = new ArrayList<String>();
@@ -49,6 +58,10 @@ public class GradesActivity extends MyCourseActivity_1 {
                 lv.setAdapter(arrayAdapter);
             }
 
+            /**
+             * show the error message when database errors happened
+             * @param databaseError
+             */
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w(TAG, "Failed to read value.", databaseError.toException());
@@ -59,6 +72,10 @@ public class GradesActivity extends MyCourseActivity_1 {
 
     }
 
+    /**
+     *click the button, jump from the GradesActivity class to the AcademicTimeTableActivity class
+     * @param v This is the 'Go to choose' button
+     */
     public void onButtonClick(View v) {
         if (v.getId() == R.id.B6) {
             Intent intent = new Intent(GradesActivity.this, AcademicTimeTableActivity.class);
@@ -66,6 +83,11 @@ public class GradesActivity extends MyCourseActivity_1 {
         }
     }
 
+    /**
+     *
+     * @param grade These are the long type value of grades getting from firsbase directly
+     * @return item which is grade levels converted from grade marks
+     */
     public String convert(Long grade){
         String item ="";
         if (grade >= 90)

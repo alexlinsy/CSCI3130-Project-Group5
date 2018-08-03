@@ -88,7 +88,7 @@ public class GradesActivity extends MyCourseActivity_1 {
      * @param grade These are the long type value of grades getting from firsbase directly
      * @return item which is grade levels converted from grade marks
      */
-    public String convert(Long grade){
+    public static String convert(long grade){
         String item ="";
         if (grade >= 90)
             item = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tA+";

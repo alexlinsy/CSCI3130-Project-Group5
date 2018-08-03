@@ -20,6 +20,9 @@ import ca.dal.csci3130.coursesmanagementsystem.CoursesRegister.UserActivity;
 import ca.dal.csci3130.coursesmanagementsystem.Login.LoginActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
+/**
+ * This class is designed to add few functions after myCourse activity
+ */
 public class MyCourseActivity_1 extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listView;
@@ -37,7 +40,9 @@ public class MyCourseActivity_1 extends AppCompatActivity {
     }
 
 
-
+    /**
+     * set the list view of showing the few buttons after myCourse activity
+     */
     private void setupListView(){
         String []title = getResources().getStringArray(R.array.Main);
         String []description = getResources().getStringArray(R.array.Description);

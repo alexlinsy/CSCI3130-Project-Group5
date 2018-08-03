@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import ca.dal.csci3130.coursesmanagementsystem.CoursesRegister.registeredCourse;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
+/**
+ * This class is designed to get the schedule of the courses
+ */
 public class dailyActivity extends AppCompatActivity {
     private ArrayList<registeredCourse>courses;
     private ListView view;
@@ -26,7 +29,6 @@ public class dailyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
-        //view = findViewById(R.id.registered);
         Intent intent = getIntent();
         courses = (ArrayList<registeredCourse>) intent.getExtras().getSerializable("sche");
         courseName  = new String[courses.size()];
@@ -36,7 +38,6 @@ public class dailyActivity extends AppCompatActivity {
             courseTime[i] = courses.get(i).getStartTime()+" - "+courses.get(i).getEndTime();
         }
         setuplistView();
-        //String str ="";
     }
 
     public void setuplistView(){

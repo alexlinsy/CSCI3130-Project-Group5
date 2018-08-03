@@ -95,17 +95,17 @@ public class UserActivity extends AppCompatActivity {
 
                 coursesView.setAdapter(arrayAdapter);
 
-                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                boolean dialogShown = settings.getBoolean("dialogShown", false);
+               // SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                //boolean dialogShown = settings.getBoolean("dialogShown", false);
                 if(currentCourses.timeConflit()) {
                     Alertbuilder.setMessage("Your register courses have time conflict, please check the academic time table ");
                     AlertDialog alertBox = Alertbuilder.create();
-                    if(!dialogShown) {
+                  //  if(!dialogShown) {
                         alertBox.show();
-                        SharedPreferences.Editor editor = settings.edit();
-                        editor.putBoolean("dialogShown", true);
-                        editor.commit();
-                    }
+                      //  SharedPreferences.Editor editor = settings.edit();
+                      //  editor.putBoolean("dialogShown", true);
+                        //editor.commit();
+                    //}
                 }
 
 

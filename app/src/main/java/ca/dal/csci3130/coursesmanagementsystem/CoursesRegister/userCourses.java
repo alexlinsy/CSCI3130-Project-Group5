@@ -1,8 +1,7 @@
 package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 /**
- * Class for add courses to a user
- *
- * */
+ * This class is created for adding courses to the user
+ */
 public class userCourses {
     private String userCourseName;
     private String courseID;

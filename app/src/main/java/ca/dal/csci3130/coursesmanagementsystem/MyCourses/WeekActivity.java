@@ -58,7 +58,7 @@ public class WeekActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                registeredCourse.clearCourseList();
                 for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     registeredCourse reg = dataSnapshot1.getValue(registeredCourse.class);
                     reg.parseTime();

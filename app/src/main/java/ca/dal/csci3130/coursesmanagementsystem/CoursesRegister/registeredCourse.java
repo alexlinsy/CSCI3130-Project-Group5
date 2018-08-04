@@ -189,6 +189,14 @@ public class registeredCourse implements Serializable{
         }
     }
 
+    public static void clearCourseList() {
+        getMonday().clear();
+        getTuesday().clear();
+        getWednesday().clear();
+        getThursday().clear();
+        getFriday().clear();
+    }
+
     /**
      * Method for check time conflict
      * @return boolean value

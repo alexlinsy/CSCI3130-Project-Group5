@@ -3,6 +3,9 @@ package ca.dal.csci3130.coursesmanagementsystem.CoursesRegister;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *This class is designed to add some method to register the course from courselist
+ */
 public class registeredCourse implements Serializable{
     private String courseID;
     private String courseMajor;
@@ -22,6 +25,14 @@ public class registeredCourse implements Serializable{
     public registeredCourse(){
 
     }
+
+    /**
+     * constructor for class
+     * @param courseID The course number(id)
+     * @param courseMajor The major of the course
+     * @param courseTime  The course time
+     * @param courseYear  The course for specific year
+     */
     public registeredCourse(String courseID,String courseMajor,String courseTime,String courseYear){
         this.courseID = courseID;
         this.courseMajor = courseMajor;
@@ -108,6 +119,9 @@ public class registeredCourse implements Serializable{
         return Friday;
     }
 
+    /**
+     * Get the course time and store in an array
+     */
     public void parseTime(){
         String forParse = getCourseTime();
         String[]stage1Parse = forParse.split("\\(");
@@ -125,6 +139,10 @@ public class registeredCourse implements Serializable{
         }
     }
 
+    /**
+     * add the registered course to an arraylist
+     * @param course for the specific course user registered
+     */
     public static void addToList(registeredCourse course){
         registeredCourses.add(course);
     }
@@ -135,6 +153,9 @@ public class registeredCourse implements Serializable{
         return registeredCourses;
     }
 
+    /**
+     * method of insert sort
+     */
     public static  void InsertionSort(){
         int i, j;
         registeredCourse reg;
@@ -167,7 +188,9 @@ public class registeredCourse implements Serializable{
         }
     }
 
-
+    /**
+     * Get the exact week day of the course
+     */
     public void addBasedOnAvailableTime(){
 
         for(int i =0; i<getAvaliableTime().length;i++){
@@ -216,7 +239,7 @@ public class registeredCourse implements Serializable{
             for (int i = 0; i < getMonday().size()-1; i++) {
                 currentCourseEndTime = Integer.parseInt(getMonday().get(i).getEndTime());
                 if(i<getMonday().size()-1) {
-                    for (int j = i + 1; j < getMonday().size()-1; j++) {
+                    for (int j = i + 1; j < getMonday().size()-2; j++) {
                         allCoursesStartTime = Integer.parseInt(getMonday().get(j).getStartTime());
                         if (currentCourseEndTime > allCoursesStartTime) {
                             checkConflit = true;
@@ -262,7 +285,7 @@ public class registeredCourse implements Serializable{
             for (int i = 0; i < getWednesday().size()-1; i++) {
                 currentCourseEndTime = Integer.parseInt(getWednesday().get(i).getEndTime());
                 if(i<getWednesday().size()-1) {
-                    for (int j = i + 1; j < getWednesday().size()-1; j++) {
+                    for (int j = i + 1; j < getWednesday().size()-2; j++) {
                         allCoursesStartTime = Integer.parseInt(getWednesday().get(j).getStartTime());
                         if (currentCourseEndTime > allCoursesStartTime) {
                             checkConflit = true;

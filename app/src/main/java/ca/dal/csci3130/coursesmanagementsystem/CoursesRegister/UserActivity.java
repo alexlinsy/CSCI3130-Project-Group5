@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import ca.dal.csci3130.coursesmanagementsystem.Login.IntermediaryActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
+/**
+ * This class is designed to get the registered course from user and also can check the time conflict when user add a course
+ */
 public class UserActivity extends AppCompatActivity {
 
     private static final String TAG = "UserActivity";
@@ -40,6 +43,9 @@ public class UserActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
+    /**
+     * Connect with database
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
@@ -95,17 +101,17 @@ public class UserActivity extends AppCompatActivity {
 
                 coursesView.setAdapter(arrayAdapter);
 
-                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                boolean dialogShown = settings.getBoolean("dialogShown", false);
+               // SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                //boolean dialogShown = settings.getBoolean("dialogShown", false);
                 if(currentCourses.timeConflit()) {
                     Alertbuilder.setMessage("Your register courses have time conflict, please check the academic time table ");
                     AlertDialog alertBox = Alertbuilder.create();
-                    if(!dialogShown) {
+                  //  if(!dialogShown) {
                         alertBox.show();
-                        SharedPreferences.Editor editor = settings.edit();
-                        editor.putBoolean("dialogShown", true);
-                        editor.commit();
-                    }
+                      //  SharedPreferences.Editor editor = settings.edit();
+                      //  editor.putBoolean("dialogShown", true);
+                        //editor.commit();
+                    //}
                 }
 
 

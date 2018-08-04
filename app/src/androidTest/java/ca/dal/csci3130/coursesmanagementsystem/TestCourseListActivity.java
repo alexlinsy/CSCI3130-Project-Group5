@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
-public class testOnAcademicTableActivity {
+public class TestCourseListActivity {
     @Rule
     public ActivityTestRule<AcademicTimeTableActivity> mActivityRule = new ActivityTestRule<>(AcademicTimeTableActivity.class);
 
@@ -26,13 +26,6 @@ public class testOnAcademicTableActivity {
         onView(withId(R.id.spinner2)).perform(click());
         onData(allOf(is(instanceOf(String.class)),is(spinnerItemText))).perform(click());
         Thread.sleep(1000);
-    }
-    @Test
-    public void clickOnCourses()throws InterruptedException{
-
-        onData(org.hamcrest.Matchers.anything()).inAdapterView(withId(R.id.listView))
-                .atPosition(0).perform(click());
-        Thread.sleep(2000);
     }
 
 }

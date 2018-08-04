@@ -30,6 +30,9 @@ import java.util.ArrayList;
 import ca.dal.csci3130.coursesmanagementsystem.DisplayCourses.AcademicTimeTableActivity;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 
+/**
+ * This class is designed to drop the course from registered course
+ */
 public class dropCoursesActivity extends AppCompatActivity {
 
     private static final String TAG = "CourseRegisterActivity";
@@ -46,6 +49,9 @@ public class dropCoursesActivity extends AppCompatActivity {
     private DatabaseReference userRef;
     private DatabaseReference accountRef;
     @Override
+    /**
+     * connecting with database order to get and modify the information of courses in database
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drop_courses);
@@ -112,7 +118,7 @@ public class dropCoursesActivity extends AppCompatActivity {
                 buttonEffect(dropButton);
 
 
-                for (int i = 0; i < registeredCourse.getMonday().size(); i++) {
+               /* for (int i = 0; i < registeredCourse.getMonday().size(); i++) {
                     String mondayCourse = registeredCourse.getMonday().get(i).getCourseID();
                     if (mondayCourse.equalsIgnoreCase(courseID)) {
                         registeredCourse.getMonday().remove(i);
@@ -122,7 +128,7 @@ public class dropCoursesActivity extends AppCompatActivity {
                     if (registeredCourse.getWednesday().get(i).getCourseID().equalsIgnoreCase(courseID)) {
                         registeredCourse.getWednesday().remove(i);
                     }
-                }
+                }*/
 
                accountRef.child(userCourseId).removeValue();
 

@@ -17,7 +17,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
-public class testOnButtonsUiTest {
+public class TestOnButtonsUiTest {
 
     @Test
     public void useAppContext() {
@@ -94,6 +94,6 @@ public class testOnButtonsUiTest {
         onView(withId(R.id.buttonLogin)).perform(closeSoftKeyboard());
         onView(withId(R.id.buttonLogin)).perform(click());
         Thread.sleep(5000);
-        onView(withId(R.id.myCoursesButton)).perform(click());
+        onView(withId(R.id.myCourse1)).perform(click());
     }
 }

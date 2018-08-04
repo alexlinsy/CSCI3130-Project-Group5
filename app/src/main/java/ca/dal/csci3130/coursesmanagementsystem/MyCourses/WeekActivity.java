@@ -32,7 +32,9 @@ import java.util.ArrayList;
 import ca.dal.csci3130.coursesmanagementsystem.R;
 import ca.dal.csci3130.coursesmanagementsystem.CoursesRegister.registeredCourse;
 
-
+/**
+ * This class is designed to get the schedule of the whole registered courses
+ */
 public class WeekActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listView;
@@ -54,11 +56,15 @@ public class WeekActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.lvWeek);
     }
 
+    /**
+     * Get the registered courses and sort the courses by different week day
+     */
     public void database(){
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 registeredCourse.clearCourseList();
+
                 for(final DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     registeredCourse reg = dataSnapshot1.getValue(registeredCourse.class);
                     reg.parseTime();
@@ -81,9 +87,11 @@ public class WeekActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Going to the different week day schedule when user press the different week day button
+     */
     private void setupListView(){
         String[]week = getResources().getStringArray(R.array.Week);
-        // String [] color = getResources().getStringArray(R.array.colors);
         SimpleAdatper simpleAdatper = new SimpleAdatper(this, week);
         listView.setAdapter(simpleAdatper);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

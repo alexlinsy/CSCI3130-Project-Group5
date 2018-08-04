@@ -27,12 +27,5 @@ public class TestCourseListActivity {
         onData(allOf(is(instanceOf(String.class)),is(spinnerItemText))).perform(click());
         Thread.sleep(1000);
     }
-    @Test
-    public void clickOnCourses()throws InterruptedException{
-
-        onData(org.hamcrest.Matchers.anything()).inAdapterView(withId(R.id.listView))
-                .atPosition(0).perform(click());
-        Thread.sleep(2000);
-    }
 
 }

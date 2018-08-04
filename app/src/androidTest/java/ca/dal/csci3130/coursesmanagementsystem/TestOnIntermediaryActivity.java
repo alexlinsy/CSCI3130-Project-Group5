@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ca.dal.csci3130.coursesmanagementsystem.Login.IntermediaryActivity;
+import ca.dal.csci3130.coursesmanagementsystem.MyCourses.MyCourseActivity_1;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;

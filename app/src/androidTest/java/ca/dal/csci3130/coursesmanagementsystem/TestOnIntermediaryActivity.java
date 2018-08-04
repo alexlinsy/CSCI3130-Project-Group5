@@ -38,12 +38,7 @@ public class TestOnIntermediaryActivity {
         Thread.sleep(2000);
     }
     @Test
-    public void onMyCourseButton() throws InterruptedException{
-        onView(withId(R.id.myCoursesButton)).perform(click());
-        Thread.sleep(2000);
-    }
-    @Test
-    public void onMyCourseButton1() throws InterruptedException{
+    public void onMyCourseButton() throws InterruptedException {
         onView(withId(R.id.myCourse1)).perform(click());
         Thread.sleep(2000);
     }

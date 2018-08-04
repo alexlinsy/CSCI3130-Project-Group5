@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
-public class testOnAcademicTableActivity {
+public class TestCourseListActivity {
     @Rule
     public ActivityTestRule<AcademicTimeTableActivity> mActivityRule = new ActivityTestRule<>(AcademicTimeTableActivity.class);
 
